@@ -7,15 +7,15 @@
 </head>
 
 <body>
-	<form method="post">
+	<form action="/login" method="post">
 		<h1>ログイン</h1>
 		<div><!--ユーザー名-->
 			<label>メールアドレス</label>
-			<input type="email" th:field="">
+			<input type="email" name="email">
 		</div>
 		<div><!--パスワード-->
 			<label>パスワード</label>
-			<input type="password" th:field="">
+			<input type="password" name="password">
 		</div>
 		<div>
 			<input type="submit" value="ログイン">
