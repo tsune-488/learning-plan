@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>先生 設定画面</title>
+</head>
+
+<body>
+	<form method="post">
+		<div><!--学校名の設定-->
+			<label>学校名</label>
+			<input type="text" th:field="">
+		</div>
+		<div><!--学年・クラス-->
+			<label>学年クラス</label>
+			<input type="text" th:field="">
+		</div>
+		<div><!--期間-->
+			<label>計画開始日：</label>
+			<input type="date" th:field="">
+			<div>
+				<label>計画終了日：</label>
+				<input type="date" th:field="">
+			</div>
+			<div>
+				<input type="submit" value="作成">
+			</div>
+	</form>
+</body>
+
+</html>
