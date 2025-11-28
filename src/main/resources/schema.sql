@@ -15,20 +15,16 @@ CREATE TABLE teachers (
 	--学年クラス
 	class VARCHAR(10) NOT NULL,
 	--先生の名前
-	teachername VARCHAR(10) NOT NULL,
+	teachername VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE test (
 	--ID
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	--学校名
-    schoolname VARCHAR(25) NOT NULL,
-	--メールアドレス
-	email VARCHAR(60) NOT NULL,
-	--パスワード
-	password VARCHAR(255) NOT NULL,
-	--学年クラス
-	class VARCHAR(10) NOT NULL,
-	--先生の名前
-	teachername VARCHAR(10) NOT NULL,
-);
+	--テスト名
+    testname VARCHAR(25) NOT NULL,
+	--開始日
+	startday DATE,
+	--終了日
+	lastday DATE
+	);
