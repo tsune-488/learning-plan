@@ -19,7 +19,7 @@ public class Teachers {
     // パスワード
     private String password;
     // 学年クラス
-    private String className;
+    private String classname;
     // 先生の名前
     private String teachername;  
 }

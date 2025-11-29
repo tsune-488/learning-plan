@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.example.demo.entity.TestsSetting;
 
 @Mapper
-public interface testsMapper {
+public interface TestsMapper {
 	//登録情報の取得
 	List<TestsSetting> findAll();
 	

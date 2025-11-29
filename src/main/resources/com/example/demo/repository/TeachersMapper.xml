@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.TeachersMapper">
+
+    <!-- 登録情報をすべて取得 -->
+    <select id="selectAll" resultMap="TeachersResultMap">
+        SELECT id, schoolname, email, password, classname, teachername
+        FROM teachers
+        ORDER BY id
+    </select>
+
+    <!-- 情報の新規登録 -->
+    <insert id="insert" parameterType="com.example.demo.entity.Teachers">
+        INSERT INTO teachers (schoolname, email, password, classname, teachername)
+        VALUES (#{schoolname}, #{email}, #{password}, #{classname}, #{teachername})
+    </insert>
+
+    <!-- 登録情報の更新 -->
+    <update id="update" parameterType="com.example.demo.entity.Teachers">
+        UPDATE teachers SET
+            schoolname = #{schoolname},
+            email = #{email},
+            password = #{password},
+            classname = #{classname},
+            teachername = #{teachername}
+        WHERE id = #{id}
+    </update>
+</mapper>

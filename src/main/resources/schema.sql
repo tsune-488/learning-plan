@@ -13,7 +13,7 @@ CREATE TABLE teachers (
 	--パスワード
 	password VARCHAR(255) NOT NULL,
 	--学年クラス
-	class VARCHAR(10) NOT NULL,
+	classname VARCHAR(10) NOT NULL,
 	--先生の名前
 	teachername VARCHAR(10) NOT NULL
 );
