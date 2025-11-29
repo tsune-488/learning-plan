@@ -1,6 +1,6 @@
 -- テーブルが存在したら削除する
 DROP TABLE IF EXISTS teachers;
-DROP TABLE IF EXISTS test;
+DROP TABLE IF EXISTS tests;
 
 --ログイン認証を格納するテーブル
 CREATE TABLE teachers (
@@ -18,7 +18,7 @@ CREATE TABLE teachers (
 	teachername VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE test (
+CREATE TABLE tests (
 	--ID
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	--テスト名

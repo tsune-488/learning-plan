@@ -5,4 +5,4 @@ VALUES
 
 --テストダミーデータの追加
 -- password : adminpass
-INSERT INTO test (testname, startday, lastday) VALUES ('期末テスト',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+INSERT INTO tests (testname, startday, lastday) VALUES ('期末テスト',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
