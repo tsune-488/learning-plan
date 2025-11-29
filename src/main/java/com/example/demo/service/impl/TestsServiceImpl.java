@@ -1,0 +1,41 @@
+package com.example.demo.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.entity.TestsSetting;
+import com.example.demo.repository.TestsMapper;
+import com.example.demo.service.TestsService;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class TestsServiceImpl implements TestsService {
+	
+	//DI
+	private final TestsMapper testsMapper;
+
+	@Override
+	public List<TestsSetting> findAll() {
+		return testsMapper.findAll();
+	}
+
+	@Override
+	public TestsSetting findById(Integer id) {
+		return testsMapper.findById(id);
+	}
+
+	@Override
+	public void insert(TestsSetting testsSetting) {
+	}
+
+	@Override
+	public void update(TestsSetting testsSetting) {
+
+	}
+
+}
