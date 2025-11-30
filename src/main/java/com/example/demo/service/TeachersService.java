@@ -13,5 +13,8 @@ public interface TeachersService {
 		
 	//設定情報の更新
 	void update(Teachers teachers);
+	
+	//ログイン情報の照合
+	Teachers login(String email, String password);
 
 }

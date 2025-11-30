@@ -43,19 +43,6 @@ public class TeacherController {
         return "redirect:/login"; 
 	}
 	
-	//ログイン画面
-	@GetMapping("/login")
-	public String showLogin() {
-		return "teacherLogin";
-	}
-	
-	
-	//管理画面へ
-	@PostMapping("/login")
-	public String doLogin() {
-		return "dashboard";
-	}
-	
 	//新規登録画面へ
 	@GetMapping("/test/new")
 	public String showNewTestSetting() {

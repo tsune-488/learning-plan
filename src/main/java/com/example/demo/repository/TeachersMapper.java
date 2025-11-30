@@ -3,6 +3,7 @@ package com.example.demo.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.entity.Teachers;
 
@@ -16,5 +17,9 @@ public interface TeachersMapper {
 	
 	//設定情報の更新
 	void update(Teachers teachers);
+	
+	//ログイン情報の照合
+	Teachers findByEmailAndPassword(@Param("email") String email, 
+			                        @Param("password") String password);
 
 }

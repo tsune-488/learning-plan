@@ -34,5 +34,9 @@ public class TeachersServiceImpl implements TeachersService {
 	public void update(Teachers teachers) {
 		teachersMapper.update(teachers);
 	}
-
+	
+	@Override
+	public Teachers login(String email, String password) {
+		return teachersMapper.findByEmailAndPassword(email, password);
+	}
 }

@@ -25,4 +25,10 @@
             teachername = #{teachername}
         WHERE id = #{id}
     </update>
+    
+    <!-- ログイン情報の照合 -->
+    <select id="findByEmailAndPassword" resultType="com.example.demo.entity.Teachers">
+        SELECT * FROM teachers WHERE email = #{email} AND password = #{password}
+    </select>
+ 
 </mapper>
