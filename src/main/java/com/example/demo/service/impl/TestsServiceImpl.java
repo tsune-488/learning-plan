@@ -31,11 +31,12 @@ public class TestsServiceImpl implements TestsService {
 
 	@Override
 	public void insert(TestsSetting testsSetting) {
+		testsMapper.insert(testsSetting);
 	}
 
 	@Override
 	public void update(TestsSetting testsSetting) {
-
+		testsMapper.update(testsSetting);
 	}
 
 }

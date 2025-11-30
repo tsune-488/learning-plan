@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.repository.TeachersMapper">
 
     <!-- 登録情報をすべて取得 -->
-    <select id="selectAll" resultMap="TeachersResultMap">
+    <select id="selectAll" resultType="com.example.demo.entity.Teachers">
         SELECT id, schoolname, email, password, classname, teachername
         FROM teachers
         ORDER BY id

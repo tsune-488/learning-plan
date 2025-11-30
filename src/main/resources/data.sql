@@ -1,5 +1,5 @@
 --登録ダミーデータの追加
-INSERT INTO teachers (schoolname, email, password, class, teachername )
+INSERT INTO teachers (schoolname, email, password, classname, teachername )
 VALUES
 ('一中', 'tune@email', 'pass', '1A', '恒');
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.repository.testsMapper">
+<mapper namespace="com.example.demo.repository.TestsMapper">
 
     <!-- 登録情報をすべて取得 -->
     <select id="findAll" resultType="com.example.demo.entity.TestsSetting">
-        SELECT id, testname ,startday ,lastday FROM test;   
+        SELECT id, testname ,startday ,lastday FROM tests;   
     </select>
 
     <!-- IDによる取得 -->
@@ -14,7 +14,7 @@
 
     <!-- テストの新規登録 -->
     <insert id="insert">
-        INSERT INTO test (testname, startday, lastday)
+        INSERT INTO tests (testname, startday, lastday)
         VALUES (#{testname}, #{startday}, #{lastday});
     </insert>
     

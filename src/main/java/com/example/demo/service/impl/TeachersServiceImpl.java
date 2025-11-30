@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Teachers;
+import com.example.demo.repository.TeachersMapper;
 import com.example.demo.service.TeachersService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,17 +17,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TeachersServiceImpl implements TeachersService {
 
+	//DI
+	private final TeachersMapper teachersMapper;
+	
 	@Override
 	public List<Teachers> selectAll() {
-		return selectAll();
+		return teachersMapper.selectAll();
 	}
 
 	@Override
 	public void insert(Teachers teachers) {
+		teachersMapper.insert(teachers);
 	}
 
 	@Override
 	public void update(Teachers teachers) {
+		teachersMapper.update(teachers);
 	}
 
 }
