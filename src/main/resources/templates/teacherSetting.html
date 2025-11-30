@@ -7,26 +7,28 @@
 </head>
 
 <body>
-	<form action="/teacher/new" method="post">
+	<form th:action="@{/teacher/new}" 
+	      th:object="${teachersNewForm}"
+		  method="post">
 		<div><!--学校名の設定-->
 			<label>学校名</label>
-			<input type="text" name="schoolname">
+			<input type="text" th:field="*{schoolname}">
 		</div>
 		<div><!--メールアドレスの設定-->
 			<label>メールアドレス</label>
-			<input type="email" name="email">
+			<input type="email" th:field="*{email}">
 		</div>
 		<div><!--パスワードの設定-->
 			<label>パスワード</label>
-			<input type="password" name="password">
+			<input type="password" th:field="*{password}">
 		</div>
 		<div><!--学年・クラス-->
 			<label>学年クラス</label>
-			<input type="text" name="classname">
+			<input type="text" th:field="*{classname}">
 		</div>
 		<div><!--先生の名前-->
 			<label>先生の名前</label>
-			<input type="text" name="teachername">
+			<input type="text" th:field="*{teachername}">
 		</div>
 			<div>
 				<input type="submit" value="登録">

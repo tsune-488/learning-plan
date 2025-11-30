@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,9 @@ public class TeacherController {
 	
 	//新規登録画面へ
 	@GetMapping("/teacher/new")
-	public String showNewTeacherForm() {
-		return "teacherSetting";
+	public String showNewTeacherForm(Model model) {
+	    model.addAttribute("teachersNewForm", new TeachersNewForm());
+	    return "teacherSetting";
 	}
 	
 	//新規登録を実行
