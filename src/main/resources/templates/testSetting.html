@@ -7,17 +7,20 @@
 </head>
 
 <body>
-	<form action="/teacher/new" method="post">
+	<form th:action="@{/test/new}"
+	      th:object="${testsSettingForm}" 
+	      method="post">
 		<div><!--試験の名前-->
 			<label>試験名</label>
-			<input type="text" name="schoolname">
+			<input type="text" th:field="*{testname}">
 		</div>
 		<div><!--期間-->
 			<label>計画開始日：</label>
-			<input type="date" name="startday">
+			<input type="date" th:field="*{startday}">
+		</div>
 		<div>
 			<label>計画終了日：</label>
-			<input type="date" name="lastday">
+			<input type="date" th:field="*{lastday}">
 		</div>
 		<div>
 			<input type="submit" value="作成">

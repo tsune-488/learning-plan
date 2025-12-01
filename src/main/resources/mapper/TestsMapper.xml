@@ -4,18 +4,18 @@
 
     <!-- 登録情報をすべて取得 -->
     <select id="findAll" resultType="com.example.demo.entity.TestsSetting">
-        SELECT id, testname ,startday ,lastday FROM tests;   
+        SELECT id, testname ,startday ,lastday FROM tests   
     </select>
 
     <!-- IDによる取得 -->
     <select id="findById" parameterType="int" resultType="com.example.demo.entity.TestsSetting">
-        SELECT id, testname, startday, lastday FROM tests WHERE id = #{id};   
+        SELECT id, testname, startday, lastday FROM tests WHERE id = #{id}  
     </select>
 
     <!-- テストの新規登録 -->
     <insert id="insert">
         INSERT INTO tests (testname, startday, lastday)
-        VALUES (#{testname}, #{startday}, #{lastday});
+        VALUES (#{testname}, #{startday}, #{lastday})
     </insert>
     
     <!-- テスト情報の更新 -->
@@ -24,7 +24,7 @@
             testname = #{testname},
             startday = #{startday},
             lastday = #{lastday}
-        WHERE id = #{id};
+        WHERE id = #{id}
     </update>
 
 </mapper>
