@@ -43,10 +43,4 @@ public class TeacherController {
         return "redirect:/login"; 
 	}
 	
-	//新規登録画面へ
-	@GetMapping("/test/new")
-	public String showNewTestSetting() {
-		return "testSetting";
-	}
-	
 }
