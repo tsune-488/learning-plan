@@ -2,6 +2,9 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +16,13 @@ public class TestsSetting {
 
     // ID
 	private Integer id;
-	// 学校名
+	// テスト名
+	@NotBlank(message="テスト名は必須です")
     private String testname;
     // 開始日
+	@NotNull(message="開始日は必須です")
     private LocalDate startday; 
     // 終了日
+	@NotNull(message="終了日は必須です")
     private LocalDate lastday;
 }
