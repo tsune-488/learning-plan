@@ -42,6 +42,12 @@ public class LoginController {
 	    }
 
 	    // ログイン成功
-		return "dashboard";
+		return "redirect:/dashboard";
 	}
+	
+	@GetMapping("/dashboard")
+	public String showDashboard() {
+		return "/dashboard";
+	}
+	
 }

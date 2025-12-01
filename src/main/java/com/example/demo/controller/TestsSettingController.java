@@ -30,13 +30,18 @@ public class TestsSettingController {
 	
 	//テスト登録を実行
 	@PostMapping("/test/new")
-	public String registerTests(@ModelAttribute TestsSettingForm form ) {
+	public String registerTests(@ModelAttribute TestsSettingForm form , Model model) {
 		//entityへの変換
 		TestsSetting testsSetting = TestsSettingHelper.convertTestsSetting(form);
 		//登録を実行
 		testsService.insert(testsSetting);
+		//連番の取得
+		Integer id = testsSetting.getId();
+		//生徒配布用のURLの生成
+		String studentUrl = "/test/" + id + "/student";
+		model.addAttribute("studentUrl", studentUrl);
 		
-	    return "redirect:/dashboard"; 
+	    return "studentUrlResult"; 
 	}
 	
 	
