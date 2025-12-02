@@ -28,3 +28,16 @@ CREATE TABLE tests (
 	--終了日
 	lastday DATE
 	);
+
+CREATE TABLE students (
+	--ID teachersテーブルのIDが外部キー
+	teacher_id INT NOT NULL,
+	--出席番号
+	studentnumber VARCHAR(10) NOT NULL,
+	--名前
+	studentname VARCHER(20) NOT NULL,
+	--パスワード
+	studentpassword VARCHAR(255) NOT NULL,
+	--外部キーの設定
+	FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+);
