@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>生徒 設定画面</title>
+</head>
+
+<body>
+	<form th:action="@{/student/new}" 
+	      th:object="${studentNewForm}"
+		  method="post">
+		<div><!--出席番号の設定-->
+			<label>出席番号</label>
+			<input type="text" th:field="*{studentNumber}">
+		</div>
+		<div><!--生徒名の設定-->
+			<label>名前</label>
+			<input type="text" th:field="*{studentname}">
+		</div>
+		
+		<div><!--パスワードの設定-->
+			<label>パスワード</label>
+			<input type="password" th:field="*{password}">
+		</div>
+		<p>パスワードは忘れないものにしましょう。</p>
+			<div>
+				<input type="submit" value="登録">
+			</div>
+	</form>
+</body>
+
+</html>
