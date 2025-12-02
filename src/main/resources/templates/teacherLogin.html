@@ -3,17 +3,17 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>生徒 ログイン画面</title>
+	<title>先生 ログイン画面</title>
 </head>
 
 <body>
-	<form th:action="@{/studentLogin}" 
-	      th:object="${studentLoginForm}" 
+	<form th:action="@{/login}" 
+	      th:object="${loginForm}" 
 	      method="post">
 		<h1>ログイン</h1>
 		<div><!--メールアドレス-->
-			<label>出席番号</label>
-			<input type="text" th:field="*{text}">
+			<label>メールアドレス</label>
+			<input type="email" th:field="*{email}">
 		</div>
 		<div><!--パスワード-->
 			<label>パスワード</label>
