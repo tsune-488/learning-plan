@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import com.example.demo.entity.Students;
 
 @Mapper
-public interface StudentMapper {
+public interface StudentsMapper {
 	//登録情報の取得
-	List<Students> selectAll();
+	List<Students> selectByTeacherId(@Param("teacherId")Integer teacherId);
 	
 	//設定情報を登録
 	void insert(Students students);

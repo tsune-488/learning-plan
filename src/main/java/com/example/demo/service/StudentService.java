@@ -5,9 +5,9 @@ import java.util.List;
 import com.example.demo.entity.Students;
 
 public interface StudentService {
-	 //登録情報の取得
-	List<Students> selectAll();
-		
+	//クラスの登録情報を取得
+	List<Students> selectByTeacherId(Integer teacherId);
+
 	//設定情報を登録
 	void insert(Students students);
 		
@@ -15,5 +15,5 @@ public interface StudentService {
 	void update(Students students);
 	
 	//ログイン情報の照合
-	Students login(String studentNmber, String studentPassword);
+	Students login(String studentNumber, String studentPassword);
 }

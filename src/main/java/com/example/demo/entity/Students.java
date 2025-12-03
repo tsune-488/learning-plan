@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,10 @@ import lombok.NoArgsConstructor;
 public class Students {
 
     // ID
-	private Integer teacher_id;
+	private Integer id;
+	//先生のID　
+	@NotNull 
+	private Integer teacherId;
 	// 出席番号
 	@NotBlank(message="出席番号は必須です")
     private String studentnumber;
