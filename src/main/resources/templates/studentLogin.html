@@ -7,26 +7,37 @@
 </head>
 
 <body>
-	<form th:action="@{/StudentLogin}" 
+	<form th:action="@{/studentLogin}" 
 	      th:object="${studentLoginForm}" 
 	      method="post">
-		<h1>ログイン</h1>
+		<h1>学習計画表</h1>
+		<h2>ログイン</h2>
+			
+		<input type="hidden" th:field="*{teacherId}">	
+		
 		<div><!--出席番号-->
 			<label>出席番号</label>
-			<input type="text" th:field="*{studentNumber}">
+			<input type="text" th:field="*{studentnumber}">
 		</div>
 		<div><!--パスワード-->
 			<label>パスワード</label>
-			<input type="studentpassword" th:field="*{stundetPassword}">
+			<input type="password" th:field="*{studentpassword}">
 		</div>
 		<div>
 			<input type="submit" value="ログイン">
 		</div>
-		
+	</form>
+	
 		<!--エラー表示-->
 		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 		
-	</form>
+		<br>
+		<h2>新規登録（※この期間に登録していなければ、新規登録から行ってください）</h2>
+		<form th:action="@{/students/new}" method="get">
+		    <input type="hidden" name="teacherId" th:value="${teacherId}">
+		    <button type="submit">新規設定</button>
+		</form>
+	
 </body>
 
 </html>

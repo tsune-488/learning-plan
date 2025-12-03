@@ -25,6 +25,9 @@
 	<h1>学習記録入力</h1>
 
 	<form action="/student/save" method="post">
+	<!-- 生徒IDとテストIDは必須（Controller でセット） -->
+    <input type="hidden" name="studentId" th:value="${studentId}">
+	<input type="hidden" name="testId" th:value="${testId}">
 
 		<table>
 			<tr>

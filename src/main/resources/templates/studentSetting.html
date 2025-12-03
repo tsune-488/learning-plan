@@ -7,12 +7,16 @@
 </head>
 
 <body>
-	<form th:action="@{/student/new}" 
-	      th:object="${studentNewForm}"
+	<form th:action="@{/students/new}" 
+	      th:object="${studentsNewForm}"
 		  method="post">
+		
+		<!--teacherId-->
+		<input type="hidden" th:field="*{teacherId}">  
+		  
 		<div><!--出席番号の設定-->
 			<label>出席番号</label>
-			<input type="text" th:field="*{studentNumber}">
+			<input type="text" th:field="*{studentnumber}">
 		</div>
 		<div><!--生徒名の設定-->
 			<label>名前</label>
