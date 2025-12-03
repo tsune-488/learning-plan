@@ -1,6 +1,7 @@
 -- テーブルが存在したら削除する
 DROP TABLE IF EXISTS teachers;
 DROP TABLE IF EXISTS tests;
+DROP TABLE IF EXISTS students;
 
 --ログイン認証を格納するテーブル
 CREATE TABLE teachers (
@@ -30,12 +31,14 @@ CREATE TABLE tests (
 	);
 
 CREATE TABLE students (
-	--ID teachersテーブルのIDが外部キー
+	--ID
+	id INT AUTO_INCREMENT PRIMARY KEY
+	--teachersテーブルのIDが外部キー
 	teacher_id INT NOT NULL,
 	--出席番号
 	studentnumber VARCHAR(10) NOT NULL,
 	--名前
-	studentname VARCHER(20) NOT NULL,
+	studentname VARCHAR(20) NOT NULL,
 	--パスワード
 	studentpassword VARCHAR(255) NOT NULL,
 	--外部キーの設定

@@ -7,4 +7,4 @@ VALUES
 INSERT INTO tests (testname, startday, lastday) VALUES ('期末テスト',CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 --テストダミーデータの追加
-INSERT INTO students (studentnumber, studentname, studentpassword) VALUES ('11',"太郎　花子", "pass");
+INSERT INTO students (teacher_id, studentnumber, studentname, studentpassword) VALUES ('1','11',"太郎　花子", "pass");
