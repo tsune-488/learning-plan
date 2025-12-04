@@ -1,4 +1,5 @@
 -- テーブルが存在したら削除する
+DROP TABLE IF EXISTS learning_records;
 DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS teachers;
 DROP TABLE IF EXISTS tests;
@@ -43,4 +44,22 @@ CREATE TABLE students (
 	studentpassword VARCHAR(255) NOT NULL,
 	--外部キーの設定
 	FOREIGN KEY (teacher_id) REFERENCES teachers(id)
+);
+
+CREATE TABLE learning_records (
+	--ID
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	--studentsテーブルのIDが外部キー
+	student_id INT NOT NULL,
+	--testsテーブルのIDが外部キー
+	test_id INT NOT NULL,
+	--日付
+	learn_day DATE NOT NULL,
+	--計画の内容
+	plan VARCHAR(255) NOT NULL,
+	--実際の学習内容
+	record VARCHAR(255) NOT NULL,
+	--外部キーの設定
+	FOREIGN KEY (student_id) REFERENCES students(id),
+	FOREIGN KEY (test_id) REFERENCES tests(id)
 );
