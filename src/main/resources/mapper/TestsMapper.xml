@@ -13,7 +13,8 @@
     </select>
 
     <!-- テストの新規登録 -->
-    <insert id="insert">
+    <insert id="insert" parameterType="com.example.demo.entity.TestsSetting"
+        useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tests (testname, startday, lastday)
         VALUES (#{testname}, #{startday}, #{lastday})
     </insert>
