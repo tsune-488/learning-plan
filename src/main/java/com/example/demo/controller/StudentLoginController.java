@@ -44,6 +44,7 @@ public class StudentLoginController {
 	    if (student == null) {
 	        // ログイン失敗
 	    	model.addAttribute("studentLoginForm", form);
+	    	model.addAttribute("teacherId", form.getTeacherId());
 	        model.addAttribute("error", "出席番号 または パスワードが違います");
 	        return "studentLogin";
 	    }
