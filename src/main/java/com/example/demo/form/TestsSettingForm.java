@@ -20,6 +20,8 @@ public class TestsSettingForm {
 	private LocalDate startday; 
 	// 終了日
 	private LocalDate lastday;
+	//先生ID
+	private Integer teacherId;
 	//新規判定
     private Boolean isNew;
 

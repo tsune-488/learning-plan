@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +31,7 @@ public class LoginController {
 	
 	//管理画面へ
 	@PostMapping("/login")
-	public String doLogin(@ModelAttribute LoginForm form, Model model) {
+	public String doLogin(@ModelAttribute LoginForm form, Model model, HttpSession session) {
 		
 		// ServiceO
 	    Teachers teachers = teachersService.login(form.getEmail(), form.getPassword());
@@ -40,7 +42,9 @@ public class LoginController {
 	        model.addAttribute("error", "メールアドレス または パスワードが違います");
 	        return "teacherLogin";
 	    }
-
+	    
+	    //セッションに先生IDを保持
+	    session.setAttribute("teacherId", teachers.getId());
 	    // ログイン成功
 		return "redirect:/dashboard";
 	}

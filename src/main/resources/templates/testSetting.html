@@ -10,6 +10,10 @@
 	<form th:action="@{/test/new}"
 	      th:object="${testsSettingForm}" 
 	      method="post">
+		  
+		<!-- teacherId を保持 -->
+		<input type="hidden" th:field="*{teacherId}">
+		
 		<div><!--試験の名前-->
 			<label>試験名</label>
 			<input type="text" th:field="*{testname}">

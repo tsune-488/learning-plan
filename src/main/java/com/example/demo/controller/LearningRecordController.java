@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,10 +37,10 @@ public class LearningRecordController {
 		    String plan = request.getParameter("plan_" + day);
 		    String record = request.getParameter("record_" + day);
 		    //空なら保存しない
-		    if ((plan == null || plan.isBlank())&&(record == null || record.isBlank())) {
-			    continue;
+		    if ((plan == null || plan.isBlank()) && (record == null || record.isBlank())) {
+		        continue;
 		    }
-		
+		    
 		    LearningRecord learningRecord = new LearningRecord();
 		
 		    learningRecord.setStudentId(studentId);
@@ -53,7 +54,19 @@ public class LearningRecordController {
 	    }
 	
 	    model.addAttribute("msg", "保存しました");
-        return "redirect:/students/learning?studentId=" + studentId + "&testId=" + testId;; 
+        return "redirect:/students/learning?studentId=" + studentId + "&testId=" + testId; 
 	}
 	
+	@GetMapping("/students/learning")
+	public String showLearning(
+	        @RequestParam Integer studentId,
+	        @RequestParam Integer testId,
+	        Model model) {
+
+	    model.addAttribute("studentId", studentId);
+	    model.addAttribute("testId", testId);
+
+	    return "studentLearning";
+	}
+
 }

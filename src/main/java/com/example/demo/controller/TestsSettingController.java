@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.entity.TestsSetting;
 import com.example.demo.form.TestsSettingForm;
@@ -23,9 +24,13 @@ public class TestsSettingController {
 	
 	//テスト登録画面へ
 	@GetMapping("/test/new")
-	public String showNewTestSettingForm(Model model) {
-		model.addAttribute("testsSettingForm",new TestsSettingForm());
-		return "testSetting";
+	public String showNewTestSettingForm(
+			@SessionAttribute("teacherId") Integer teacherId,
+			Model model) {
+		TestsSettingForm form = new TestsSettingForm();
+	    form.setTeacherId(teacherId);
+	    model.addAttribute("testsSettingForm", form);
+	    return "testSetting";
 	}
 	
 	//テスト登録を実行
@@ -36,9 +41,11 @@ public class TestsSettingController {
 		//登録を実行
 		testsService.insert(testsSetting);
 		//連番の取得
-		Integer id = testsSetting.getId();
+		Integer testId = testsSetting.getId();
+		Integer teacherId = form.getTeacherId(); 
+		
 		//生徒配布用のURLの生成
-		String studentUrl = "/test/" + id + "/student";
+		String studentUrl = "/students/login?teacherId=" + teacherId + "&testId=" + testId;
 		model.addAttribute("studentUrl", studentUrl);
 		
 	    return "studentUrlResult"; 

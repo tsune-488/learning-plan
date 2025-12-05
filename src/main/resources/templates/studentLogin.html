@@ -14,6 +14,7 @@
 		<h2>ログイン</h2>
 			
 		<input type="hidden" th:field="*{teacherId}">	
+		<input type="hidden" th:field="*{testId}">
 		
 		<div><!--出席番号-->
 			<label>出席番号</label>
@@ -32,11 +33,12 @@
 		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 		
 		<br>
-		<h2>新規登録（※この期間に登録していなければ、新規登録から行ってください）</h2>
-		<form th:action="@{/students/new}" method="get">
-		    <input type="hidden" name="teacherId" th:value="${teacherId}">
-		    <button type="submit">新規設定</button>
-		</form>
+		<h2>新規登録</h2>
+			<form th:action="@{/students/new}" th:object="${studentLoginForm}" method="get">
+			    <input type="hidden" th:field="*{teacherId}">
+			    <input type="hidden" th:field="*{testId}">
+			    <button type="submit">新規設定</button>
+			</form>
 	
 </body>
 

@@ -23,16 +23,23 @@ public class StudentLoginController {
 	
 	//ログイン画面
 	@GetMapping("/students/login")
-	public String showLogin(@RequestParam("teacherId") Integer teacherId, Model model) {
+	public String showLogin(
+			@RequestParam("teacherId") Integer teacherId,
+			@RequestParam("testId") Integer testId,
+			Model model) {
 		
 		//違うURLを使用した場合
-		if (teacherId == null) {
-	        model.addAttribute("msg", "先生から配布されたURLを使用してください。");
-	        return "teacherIdError";
+		if (testId == null) {
+	        model.addAttribute("msg", "先生から配布された新しいURLを使用してください。");
+	        return "testIdError";
 		}
 		
-		model.addAttribute("teacherId", teacherId);
-		model.addAttribute("studentLoginForm", new StudentLoginForm());
+		//テストIDと先生ID
+		StudentLoginForm form = new StudentLoginForm();
+		form.setTeacherId(teacherId);
+		form.setTestId(testId);
+
+		model.addAttribute("studentLoginForm", form);
 	    return "studentLogin";
 	}
 	//ログイン処理
@@ -50,13 +57,8 @@ public class StudentLoginController {
 	    }
 
 	 // ログイン後
-	    return "redirect:/students/learning?studentId=" + student.getId();
+	    return "redirect:/students/learning?studentId=" 
+        + student.getId() 
+        + "&testId=" + form.getTestId();
 	}
-	
-     // 学習記録入力ページ
-     @GetMapping("/students/learning")
-     public String showLearning(@RequestParam("studentId") Integer studentId, Model model) {
-    	 model.addAttribute("studentId", studentId);   
-    	 return "studentLearning"; 
-     }
 }
