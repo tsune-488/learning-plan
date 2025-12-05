@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.LearningRecordMapper">
+
+    <!-- 計画内容および実施内容すべての検索 -->
+    <select id="findAll" resultType="com.example.demo.entity.LearningRecord">
+        SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records   
+    </select>
+
+    <!-- IDから登録された情報を取得 -->
+    <select id="findById" parameterType="int" resultType="com.example.demo.entity.LearningRecord">
+        SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records WHERE id = #{id}  
+    </select>
+
+    <!-- 計画内容および実施内容の登録 -->
+    <insert id="insert" parameterType="com.example.demo.entity.LearningRecord"
+        useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO learning_records (student_id, test_id, learn_day, plan, record)
+        VALUES (#{studentId},#{testId}, #{learnDay}, #{plan}, #{record})
+    </insert>
+    
+    <!-- 計画内容および実施内容の更新 -->
+    <update id="update" parameterType="com.example.demo.entity.LearningRecord">
+        UPDATE learning_records SET
+            student_id = #{studentId},
+            test_id = #{testId},
+            learn_day = #{learnDay},
+            plan = #{plan},
+            record = #{ record}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
