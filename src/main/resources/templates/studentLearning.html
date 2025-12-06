@@ -38,11 +38,19 @@
 
 			<tr th:each="date : ${dateList}">
 				<td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
+				
+				<!-- 計画 -->
 				<td>
-					<input type="text" th:name="'plan_' + ${date}">
+					<input type="text"
+						th:name="'plan_' + ${date}"
+						th:value="${recordMap[date] != null ? recordMap[date].plan : ''}">
 				</td>
+
+				<!-- 実施内容 -->
 				<td>
-					<input type="text" th:name="'record_' + ${date}">
+					<input type="text"
+						th:name="'record_' + ${date}"
+						th:value="${recordMap[date] != null ? recordMap[date].record : ''}">
 				</td>
 			</tr>
 		</table>

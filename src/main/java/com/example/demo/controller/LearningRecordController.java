@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -97,10 +99,15 @@ public class LearningRecordController {
 		
 		List<LearningRecord> records = learningRecordService.findByStudentAndTest(studentId, testId);
 
+		 //日付から記録のMapを作る
+	    Map<LocalDate, LearningRecord> recordMap = new HashMap<>();
+	    for (LearningRecord r : records) {
+	        recordMap.put(r.getLearnDay(), r);
+	    }
 	    model.addAttribute("studentId", studentId);
 	    model.addAttribute("testId", testId);
 	    model.addAttribute("dateList", dateList);
-	    model.addAttribute("records", records);
+	    model.addAttribute("recordMap", recordMap);
 
 	    return "studentLearning";
 	}
