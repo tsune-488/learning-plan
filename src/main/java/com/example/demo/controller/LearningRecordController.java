@@ -94,10 +94,13 @@ public class LearningRecordController {
 			dateList.add(toDay);
 			toDay = toDay.plusDays(1);
 		}
+		
+		List<LearningRecord> records = learningRecordService.findByStudentAndTest(studentId, testId);
 
 	    model.addAttribute("studentId", studentId);
 	    model.addAttribute("testId", testId);
 	    model.addAttribute("dateList", dateList);
+	    model.addAttribute("records", records);
 
 	    return "studentLearning";
 	}

@@ -17,4 +17,7 @@ public interface LearningRecordService {
 		
 	//計画内容および実施内容の更新
 	void update(LearningRecord learningRecord);
+	
+	//再掲載用
+	List<LearningRecord> findByStudentAndTest(Integer studentId, Integer testId);
 }

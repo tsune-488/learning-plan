@@ -12,6 +12,12 @@ public interface LearningRecordMapper {
 	//計画内容および実施内容すべての検索
 	List<LearningRecord> findAll();
 	
+	//学習計画と内容の検索
+	List<LearningRecord> findByStudentAndTest(
+			@Param("studentId")Integer studentId,
+			@Param("testId")Integer testId
+			);
+	
 	//IDから登録された情報を取得
 	LearningRecord findById(@Param("id") Integer id);
 	

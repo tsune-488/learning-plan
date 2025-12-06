@@ -7,6 +7,13 @@
         SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records   
     </select>
 
+    <!-- 学習計画と内容の検索 -->
+    <select id="findByStudentAndTest" resultType="com.example.demo.entity.LearningRecord">
+        SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records 
+        WHERE student_id = #{studentId} AND test_id = #{testId}
+        ORDER BY learn_day
+    </select>
+    
     <!-- IDから登録された情報を取得 -->
     <select id="findById" parameterType="int" resultType="com.example.demo.entity.LearningRecord">
         SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records WHERE id = #{id}  
@@ -26,7 +33,7 @@
             test_id = #{testId},
             learn_day = #{learnDay},
             plan = #{plan},
-            record = #{ record}
+            record = #{record}
         WHERE id = #{id}
     </update>
 

@@ -23,6 +23,11 @@ public class LearningRecordServiceImpl implements LearningRecordService {
 	public List<LearningRecord> findAll() {
 		return learningRecordMapper.findAll();
 	}
+	
+	@Override
+	public List<LearningRecord> findByStudentAndTest(Integer studentId, Integer testId) {
+		return learningRecordMapper.findByStudentAndTest(studentId, testId);
+	}
 
 	@Override
 	public LearningRecord findById(Integer id) {
