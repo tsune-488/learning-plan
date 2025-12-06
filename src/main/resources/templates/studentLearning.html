@@ -32,52 +32,21 @@
 		<table>
 			<tr>
 				<th>日付</th>
-				<th>計画</th>
-				<th>実施</th>
+				<th>学習計画</th>
+				<th>学習内容</th>
 			</tr>
 
-			<tr>
-				<td>11日（金）</td>
-				<td><input type="text" name="plan_11"></td>
-				<td><input type="text" name="record_11"></td>
+			<tr th:each="date : ${dateList}">
+				<td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
+				<td>
+					<input type="text" th:name="'plan_' + ${date}">
+				</td>
+				<td>
+					<input type="text" th:name="'record_' + ${date}">
+				</td>
 			</tr>
-
-			<tr>
-				<td>12日（土）</td>
-				<td><input type="text" name="plan_12"></td>
-				<td><input type="text" name="record_12"></td>
-			</tr>
-
-			<tr>
-				<td>13日（日）</td>
-				<td><input type="text" name="plan_13"></td>
-				<td><input type="text" name="record_13"></td>
-			</tr>
-
-			<tr>
-				<td>14日（月）</td>
-				<td><input type="text" name="plan_14"></td>
-				<td><input type="text" name="record_14"></td>
-			</tr>
-
-			<tr>
-				<td>15日（火）</td>
-				<td><input type="text" name="plan_15"></td>
-				<td><input type="text" name="record_15"></td>
-			</tr>
-
-			<tr>
-				<td>16日（水）</td>
-				<td><input type="text" name="plan_16"></td>
-				<td><input type="text" name="record_16"></td>
-			</tr>
-
 		</table>
-
-		<br>
-
 		<button type="submit">保存する</button>
-
 	</form>
 
 </body>
