@@ -50,13 +50,22 @@ public class LearningRecordController {
 	    	today = today.plusDays(1);
 	    }
 	    
-		
-		//１１日～１６日まで登録
-		for (LocalDate date: dateList) {
+	    //登録されてデータの取得
+	    List<LearningRecord> existingRecords = learningRecordService.findByStudentAndTest(studentId, testId);
+	    
+	    Map<LocalDate, LearningRecord> existingMap = new HashMap<>();
+	    for(LearningRecord record : existingRecords) {
+	    	if(record.getLearnDay() != null) {
+	    	    existingMap.put(record.getLearnDay(),record);
+	        }
+	    }
+		//設定された学習期間の日付を登録
+		for (int i = 0; i < dateList.size(); i++) {
+			LocalDate date = dateList.get(i);
 			
 			//HTMLの名前に合わせる
-		    String plan = request.getParameter("plan_" + date);
-		    String record = request.getParameter("record_" + date);
+		    String plan = request.getParameter("plan_" + i);
+		    String record = request.getParameter("record_" + i);
 		    //空なら保存しない
 		    if ((plan == null || plan.isBlank()) && (record == null || record.isBlank())) {
 		        continue;
@@ -71,7 +80,14 @@ public class LearningRecordController {
 		    learningRecord.setRecord(record);
 		
 		    //保存
-		    learningRecordService.insert(learningRecord);
+		    if (existingMap.containsKey(date)) {
+		    	learningRecord.setId(existingMap.get(date).getId());
+		    	learningRecordService.update(learningRecord);
+		    } else {
+		    	learningRecordService.insert(learningRecord);
+		    }
+		    
+		    
 	    }
 	
 	    model.addAttribute("msg", "保存しました");
@@ -100,10 +116,13 @@ public class LearningRecordController {
 		List<LearningRecord> records = learningRecordService.findByStudentAndTest(studentId, testId);
 
 		 //日付から記録のMapを作る
-	    Map<LocalDate, LearningRecord> recordMap = new HashMap<>();
+		Map<LocalDate, LearningRecord> recordMap = new HashMap<>();
 	    for (LearningRecord r : records) {
+	    	if (r.getLearnDay() !=null) {
 	        recordMap.put(r.getLearnDay(), r);
+	        }
 	    }
+	    
 	    model.addAttribute("studentId", studentId);
 	    model.addAttribute("testId", testId);
 	    model.addAttribute("dateList", dateList);
