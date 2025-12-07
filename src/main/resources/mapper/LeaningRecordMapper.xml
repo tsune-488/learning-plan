@@ -4,19 +4,19 @@
 
     <!-- 計画内容および実施内容すべての検索 -->
     <select id="findAll" resultType="com.example.demo.entity.LearningRecord">
-        SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records   
+        SELECT id, student_id, test_id, learn_day AS learnDay, plan, record FROM learning_records   
     </select>
 
     <!-- 学習計画と内容の検索 -->
     <select id="findByStudentAndTest" resultType="com.example.demo.entity.LearningRecord">
-        SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records 
+        SELECT id, student_id, test_id, learn_day AS learnDay, plan, record FROM learning_records 
         WHERE student_id = #{studentId} AND test_id = #{testId}
         ORDER BY learn_day
     </select>
     
     <!-- IDから登録された情報を取得 -->
     <select id="findById" parameterType="int" resultType="com.example.demo.entity.LearningRecord">
-        SELECT id, student_id, test_id, learn_day, plan, record FROM learning_records WHERE id = #{id}  
+        SELECT id, student_id, test_id, learn_day AS learnDay, plan, record FROM learning_records WHERE id = #{id}  
     </select>
 
     <!-- 計画内容および実施内容の登録 -->
