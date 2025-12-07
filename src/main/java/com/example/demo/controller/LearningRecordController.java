@@ -99,7 +99,7 @@ public class LearningRecordController {
 	        @RequestParam Integer studentId,
 	        @RequestParam Integer testId,
 	        Model model) {
-		
+				
 		//テストの日程の取得
 		TestsSetting testDay =  testsService.findById(testId);
 		LocalDate start = testDay.getStartday();
@@ -107,13 +107,13 @@ public class LearningRecordController {
 		
 		//学習記録期間の日程作成
 		List<LocalDate> dateList = new ArrayList<>();
-		LocalDate toDay = start;
-		while(!toDay.isAfter(end)) {
-			dateList.add(toDay);
-			toDay = toDay.plusDays(1);
-		}
+	    LocalDate toDay = start;
+	    while(!toDay.isAfter(end)) {
+	        dateList.add(toDay);
+	        toDay = toDay.plusDays(1);
+	    }
 		
-		List<LearningRecord> records = learningRecordService.findByStudentAndTest(studentId, testId);
+	    List<LearningRecord> records = learningRecordService.findByStudentAndTest(studentId, testId);
 
 		 //日付から記録のMapを作る
 		Map<LocalDate, LearningRecord> recordMap = new HashMap<>();
@@ -123,12 +123,22 @@ public class LearningRecordController {
 	        }
 	    }
 	    
+	    //リスト化
+	    List<LearningRecord> viewList = new ArrayList<>();
+	    for (LocalDate d : dateList) {
+	        viewList.add(recordMap.getOrDefault(d, null));
+	    }
+	    
+	    
 	    model.addAttribute("studentId", studentId);
 	    model.addAttribute("testId", testId);
 	    model.addAttribute("dateList", dateList);
-	    model.addAttribute("recordMap", recordMap);
+	    model.addAttribute("viewList", viewList);
+	    
 
 	    return "studentLearning";
+	    
+	    
 	}
 
 }
