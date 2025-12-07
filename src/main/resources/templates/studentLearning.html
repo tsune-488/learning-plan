@@ -24,7 +24,7 @@
 
 	<h1>学習記録入力</h1>
 
-	<form action="/student/save" method="post">
+	<form th:action="@{/student/save}" method="post">
 	<!-- 生徒IDとテストIDは必須（Controller でセット） -->
     <input type="hidden" name="studentId" th:value="${studentId}">
 	<input type="hidden" name="testId" th:value="${testId}">
@@ -36,22 +36,24 @@
 				<th>学習内容</th>
 			</tr>
 
-			<tr th:each="date : ${dateList}">
-				<td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
+			<tr th:each="date,stat : ${dateList}">
+			  <td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
 				
 				<!-- 計画 -->
 				<td>
-					<input type="text"
-						th:name="'plan_' + ${date}"
-						th:value="${recordMap[date] != null ? recordMap[date].plan : ''}">
-				</td>
+				    <input type="text"
+				      th:name="'plan_' + ${stat.index}"
+				      th:value="${viewList[stat.index] != null
+				        ? viewList[stat.index].plan : ''}">
+				  </td>
 
 				<!-- 実施内容 -->
 				<td>
-					<input type="text"
-						th:name="'record_' + ${date}"
-						th:value="${recordMap[date] != null ? recordMap[date].record : ''}">
-				</td>
+				    <input type="text"
+				      th:name="'record_' + ${stat.index}"
+				      th:value="${viewList[stat.index] != null
+				        ? viewList[stat.index].record : ''}">
+				 </td>
 			</tr>
 		</table>
 		<button type="submit">保存する</button>
