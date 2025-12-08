@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TeacherClassListDto {
 	//生徒ID
-	private Integer id;
+	private Integer studentid;
+	//試験ID
+	private Integer testId;
 	// 出席番号
     private String studentnumber;
     //生徒名 

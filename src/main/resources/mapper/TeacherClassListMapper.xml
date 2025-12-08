@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.StudentsMapper">
+
+    <!-- 登録情報をすべて取得 -->
+    <select id="selectClassListByTestId" resultType="com.example.demo.dto.TeacherClassListDto">
+        SELECT s.id studentId,s.studentnumber, s.studentname, t.testname
+        FROM students s
+        JOIN student_tests st ON s.id = st.student_id
+        JOIN tests t ON st.test_id = t.id
+        WHERE t.id = #{testId}
+        ORDER BY s.studentnumber
+    </select>
+</mapper>
