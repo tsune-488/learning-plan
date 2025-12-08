@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>生徒一覧</title>
+</head>
+
+
+<body>
+	<h1>登録生徒一覧</h1>
+		<table border="1">
+			<tr>
+				<th>出席番号</th>
+				<th>名前</th>
+			</tr>
+
+			<tr th:each="student : ${students}">
+				<!-- 出席番号 -->
+				<td th:text="${student.studentNumber}"></td>
+
+				<!-- 名簿 -->
+				<td th:text="${student.studentName}"></td>
+			</tr>
+		</table>
+		
+		<a th:href="@{/dashboard}">戻る</a>
+
+</body>
+</html>
