@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.repository.StudentsMapper">
+<mapper namespace="com.example.demo.repository.TeacherClassListMapper">
 
     <!-- 登録情報をすべて取得 -->
     <select id="selectClassListByTestId" resultType="com.example.demo.dto.TeacherClassListDto">
-        SELECT s.id studentId,s.studentnumber, s.studentname, t.testname
+        SELECT s.id AS studentId,s.studentnumber AS studentNumber, s.studentname AS studentName, t.id AS testId, t.testname As testName
         FROM students s
         JOIN student_tests st ON s.id = st.student_id
         JOIN tests t ON st.test_id = t.id

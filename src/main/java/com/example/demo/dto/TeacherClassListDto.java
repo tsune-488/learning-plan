@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TeacherClassListDto {
 	//生徒ID
-	private Integer studentid;
+	private Integer studentId;
 	//試験ID
 	private Integer testId;
+	//試験名
+	private String testName;
 	// 出席番号
-    private String studentnumber;
+    private String studentNumber;
     //生徒名 
-    private String studentname; 
+    private String studentName; 
 }

@@ -1,4 +1,5 @@
 -- テーブルが存在したら削除する
+DROP TABLE IF EXISTS student_tests;
 DROP TABLE IF EXISTS learning_records;
 DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS teachers;
@@ -62,4 +63,19 @@ CREATE TABLE learning_records (
 	--外部キーの設定
 	FOREIGN KEY (student_id) REFERENCES students(id),
 	FOREIGN KEY (test_id) REFERENCES tests(id)
+);
+
+CREATE TABLE student_tests (
+	--ID
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    --studentsテーブルのIDが外部キー
+	student_id INT NOT NULL,
+	--testsテーブルのIDが外部キー
+	test_id INT NOT NULL,
+	
+	--重複登録の防止
+	UNIQUE KEY uk_student_test (student_id, test_id),
+	
+	FOREIGN KEY (student_id) REFERENCES students(id),
+    FOREIGN KEY (test_id) REFERENCES tests(id)
 );
