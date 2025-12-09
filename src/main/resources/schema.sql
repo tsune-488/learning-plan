@@ -37,6 +37,8 @@ CREATE TABLE students (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	--teachersテーブルのIDが外部キー
 	teacher_id INT NOT NULL,
+	--testsテーブルのID
+	test_id INT NOT NULL,
 	--出席番号
 	studentnumber VARCHAR(10) NOT NULL,
 	--名前
