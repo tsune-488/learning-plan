@@ -34,10 +34,10 @@
 		
 		<br>
 		<h2>新規登録</h2>
-			<form th:action="@{/students/new}" th:object="${studentLoginForm}" method="get">
-			    <input type="hidden" th:field="*{teacherId}">
-			    <input type="hidden" th:field="*{testId}">
-			    <button type="submit">新規設定</button>
+			<form th:action="@{/students/new}" method="get">
+			    <input type="hidden" name="teacherId" th:value="${studentLoginForm.teacherId}">
+			    <input type="hidden" name="testId" th:value="${studentLoginForm.testId}">
+				<button type="submit">新規設定</button>
 			</form>
 	
 </body>

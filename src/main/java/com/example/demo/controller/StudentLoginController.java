@@ -28,12 +28,6 @@ public class StudentLoginController {
 			@RequestParam("testId") Integer testId,
 			Model model) {
 		
-		//違うURLを使用した場合
-		if (testId == null) {
-	        model.addAttribute("msg", "先生から配布された新しいURLを使用してください。");
-	        return "testIdError";
-		}
-		
 		//テストIDと先生ID
 		StudentLoginForm form = new StudentLoginForm();
 		form.setTeacherId(teacherId);
@@ -45,6 +39,13 @@ public class StudentLoginController {
 	//ログイン処理
 	@PostMapping("/students/login")
 	public String doLogin(@ModelAttribute StudentLoginForm form, Model model) {
+		
+		System.out.println("★★ POST testId = " + form.getTestId());
+		
+		if(form.getTestId() == null) {
+			model.addAttribute("msg","テストIDがありません。先生から配布されたURLを使ってください");
+			return "testIdError";
+		}
 		
 	    Students student = studentService.login(form.getStudentnumber(), form.getStudentpassword());
 

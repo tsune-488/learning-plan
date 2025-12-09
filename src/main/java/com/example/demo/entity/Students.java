@@ -18,6 +18,8 @@ public class Students {
 	//先生のID　
 	@NotNull 
 	private Integer teacherId;
+	@NotNull 
+	private Integer testId;
 	// 出席番号
 	@NotBlank(message="出席番号は必須です")
     private String studentnumber;

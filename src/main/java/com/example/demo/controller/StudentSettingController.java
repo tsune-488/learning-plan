@@ -24,10 +24,13 @@ public class StudentSettingController {
 	//新規登録画面へ
 	@GetMapping("/students/new")
 	public String showNewStudentForm(
-			@RequestParam("teacherId") Integer teacherId, Model model) {
+			@RequestParam("teacherId") Integer teacherId,
+			@RequestParam("testId") Integer testId,
+			Model model) {
 		StudentsNewForm form = new StudentsNewForm();
         form.setIsNew(true); 
         form.setTeacherId(teacherId);
+        form.setTestId(testId);
         
         model.addAttribute("studentsNewForm", form);
         return "studentSetting";
@@ -40,7 +43,8 @@ public class StudentSettingController {
 		Students students = StudentsHelper.convertStudents(form);
 		//登録を実行
 		studentService.insert(students);
-		return "redirect:/students/login?teacherId=" + form.getTeacherId(); 
+		return "redirect:/students/login?teacherId=" + form.getTeacherId()
+		+ "&testId=" + form.getTestId(); 
 	}
 	
 }

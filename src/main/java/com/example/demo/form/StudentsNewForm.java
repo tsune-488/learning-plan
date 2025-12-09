@@ -12,6 +12,8 @@ public class StudentsNewForm {
 	//IDは自動登録のため、入っていません
 	//先生のID　
 	private Integer teacherId;
+	//テストのID
+	private Integer testId;
 	// 出席番号
     private String studentnumber;
     //生徒名 

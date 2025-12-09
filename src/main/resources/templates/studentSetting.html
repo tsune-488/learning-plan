@@ -11,8 +11,9 @@
 	      th:object="${studentsNewForm}"
 		  method="post">
 		
-		<!--teacherId-->
+		<!--teacherId と testId-->
 		<input type="hidden" th:field="*{teacherId}">  
+		<input type="hidden" th:field="*{testId}">
 		  
 		<div><!--出席番号の設定-->
 			<label>出席番号</label>

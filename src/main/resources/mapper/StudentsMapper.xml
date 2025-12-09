@@ -4,7 +4,7 @@
 
     <!-- 登録情報をすべて取得 -->
     <select id="selectByTeacherId" resultType="com.example.demo.entity.Students">
-        SELECT id,teacher_id, studentnumber, studentname, studentpassword
+        SELECT id,teacher_id, test_id, studentnumber, studentname, studentpassword
         FROM students
         WHERE teacher_id = #{teacherId}
         ORDER BY studentnumber
@@ -12,14 +12,15 @@
 
     <!-- 情報の新規登録 -->
     <insert id="insert" parameterType="com.example.demo.entity.Students">
-        INSERT INTO students (teacher_id, studentnumber, studentname, studentpassword)
-        VALUES (#{teacherId}, #{studentnumber}, #{studentname}, #{studentpassword})
+        INSERT INTO students (teacher_id, test_id, studentnumber, studentname, studentpassword)
+        VALUES (#{teacherId}, #{testId}, #{studentnumber}, #{studentname}, #{studentpassword})
     </insert>
 
     <!-- 登録情報の更新 -->
     <update id="update" parameterType="com.example.demo.entity.Students">
         UPDATE students SET
             teacher_id = #{teacherId},
+            test_id = #{testId},
             studentnumber = #{studentnumber},
             studentname = #{studentname},
             studentpassword = #{studentpassword}
