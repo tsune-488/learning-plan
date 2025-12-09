@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.example.demo.dto.TestListDto;
 import com.example.demo.entity.TestsSetting;
 
 @Mapper
@@ -20,5 +21,8 @@ public interface TestsMapper {
 	
 	//設定情報の更新
 	void update(TestsSetting testsSetting);
+	
+	//テスト一覧を取得
+	List<TestListDto> findAllForTeacher();
 
 }

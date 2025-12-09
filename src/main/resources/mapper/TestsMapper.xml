@@ -27,5 +27,13 @@
             lastday = #{lastday}
         WHERE id = #{id}
     </update>
+    
+    <!-- テスト一覧の作成 -->
+    <select id="findAllForTeacher"
+        resultType="com.example.demo.dto.TestListDto">
+        SELECT id , testname AS testName
+        FROM tests
+        ORDER BY id
+</select>
 
 </mapper>
