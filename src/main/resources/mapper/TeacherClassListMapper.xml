@@ -4,11 +4,15 @@
 
     <!-- 登録情報をすべて取得 -->
     <select id="selectClassListByTestId" resultType="com.example.demo.dto.TeacherClassListDto">
-        SELECT s.id AS studentId,s.studentnumber AS studentNumber, s.studentname AS studentName, t.id AS testId, t.testname As testName
+        SELECT 
+        s.id AS studentId,
+        s.test_id AS testId,
+        t.testname AS testName,
+        s.studentnumber AS studentNumber,
+        s.studentname AS studentName
         FROM students s
-        JOIN student_tests st ON s.id = st.student_id
-        JOIN tests t ON st.test_id = t.id
-        WHERE t.id = #{testId}
+        JOIN tests t ON s.test_id = t.id
+        WHERE s.test_id = #{testId}
         ORDER BY s.studentnumber
     </select>
 </mapper>

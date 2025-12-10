@@ -24,5 +24,8 @@ public interface TestsMapper {
 	
 	//テスト一覧を取得
 	List<TestListDto> findAllForTeacher();
+	
+	//学習期間の取得
+	TestListDto selectTestById(@Param("testId") Integer testId);
 
 }

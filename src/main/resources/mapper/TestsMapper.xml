@@ -34,6 +34,13 @@
         SELECT id , testname AS testName
         FROM tests
         ORDER BY id
-</select>
+    </select>
+    
+    <!-- 学習期間一覧を取得 -->
+    <select id="selectTestById" resultType="com.example.demo.dto.TestListDto">
+        SELECT id, testname AS testName,startday, lastday
+        FROM tests
+        WHERE id = #{testId}
+    </select>
 
 </mapper>
