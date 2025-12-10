@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.dto.TestListDto;
 import com.example.demo.entity.TestsSetting;
 import com.example.demo.repository.TestsMapper;
 import com.example.demo.service.TestsService;
@@ -37,6 +38,11 @@ public class TestsServiceImpl implements TestsService {
 	@Override
 	public void update(TestsSetting testsSetting) {
 		testsMapper.update(testsSetting);
+	}
+	
+	@Override
+	public TestListDto getTestById(Integer testId) {
+		return testsMapper.selectTestById(testId);
 	}
 
 }

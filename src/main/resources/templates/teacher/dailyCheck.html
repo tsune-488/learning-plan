@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>学習記録チェック表</title>
+<style>
+	table{
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th, td {
+		border: 1px solid #aaa;
+		padding: 8px;
+		text-align: center;
+	}
+</style>
+</head>
+
+	<h1>学習記録チェック</h1>
+	
+	<p>
+		テストID:<span th:text="${testId}"></span><br>
+		日付:<span th:text="${date}"></span>
+	</p>
+	
+	<p th:if="${#lists.isEmpty(list)}" style="color:red;">
+	    まだ学習記録は登録されていません。
+	</p>
+		<table>
+			<tr>
+				<th>出席番号</th>
+				<th>名前</th>
+				<th>学習計画</th>
+				<th>実施内容</th>
+			</tr>
+
+			<tr th:each="l : ${list}">
+				<!-- 出席番号・名前・計画・実施 -->
+				<td th:text="${l.studentNumber}"></td>
+				<td th:text="${l.studentName}"></td>
+				<td th:text="${l.plan}"></td>
+				<td th:text="${l.record}
+				    th:strings.isEmpty(l.record)} ? 'color:red;' : ''"></td>
+			</tr>
+		</table>
+		
+		<a th:href="@{/teacher/check/date(testId=${testId})}">戻る</a>
+</body>
+</html>

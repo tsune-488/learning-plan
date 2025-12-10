@@ -11,10 +11,9 @@
 <body>
 	<h1>管理画面</h1>
 	<h1>学習計画表の作成</h1>
-		<button onclick="location.href='/test/new'">学習計画期間の設定</button>
+	<a th:href="@{/test/new}">学習計画期間の設定</a>   
 	<br>
-	<a th:href="@{/teacher/tests}">名簿確認</a>   
-	<p>学習記録のチェック</p>
+	<a th:href="@{/teacher/tests}">学習計画期間一覧</a> 
 	
 	<!--ログアウト-->
 	<form action="/login" method="get">

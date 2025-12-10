@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>日付選択</title>
+</head>
+
+<body>
+
+	<h1>日付選択</h1>
+	
+	<!--日付一覧を表示-->
+	<form th:action="@{/teacher/check}" method="get">
+		<input type="hidden" name="teacherId" th:value="${teacherId}">
+		<input type="hidden" name="testId" th:value="${testId}">
+		<label>日付を選択</label>
+		<input type="date" name="date" required>
+		<button type="submit">チェックする</button>
+	</form>
+	
+	<hr>
+	
+	<!--名簿一覧を表示-->
+	<h2>登録生徒一覧</h2>
+			<table border="1">
+				<tr>
+					<th>出席番号</th>
+					<th>名前</th>
+				</tr>
+
+				<tr th:each="s : ${students}">
+					<td th:text="${s.studentNumber}"></td>
+					<td th:text="${s.studentName}"></td>
+				</tr>
+			</table>
+			
+			<a th:href="@{/teacher/tests}">戻る</a>
+
+	
+</body>
+</html>
