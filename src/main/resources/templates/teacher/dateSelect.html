@@ -9,15 +9,13 @@
 <body>
 
 	<h1>日付選択</h1>
-	
-	<!--日付一覧を表示-->
-	<form th:action="@{/teacher/check}" method="get">
-		<input type="hidden" name="teacherId" th:value="${teacherId}">
-		<input type="hidden" name="testId" th:value="${testId}">
-		<label>日付を選択</label>
-		<input type="date" name="date" required>
-		<button type="submit">チェックする</button>
-	</form>
+	<ul>
+		<li th:each = "d : ${dateList}">
+			<a th:href="@{/teacher/check(testId=${testId}, date=${d})}"
+			   th:text="${d}">
+		   </a>
+		</li>
+	</ul>
 	
 	<hr>
 	

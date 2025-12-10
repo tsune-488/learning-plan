@@ -3,16 +3,16 @@
 <mapper namespace="com.example.demo.repository.TeacherCheckMapper">
 
     <!-- 登録情報をすべて取得 -->
-    <select id="selectClassListByTestId" resultType="com.example.demo.dto.TeacherCheckDto">
+    <select id="selectCheckListByDaily" parameterType="map" resultType="com.example.demo.dto.TeacherCheckDto">
         SELECT 
-        s.studentnumber AS studentNumber,
-        s.studentname AS studentName,
-        l.plan,
-        l.record,
+            s.studentnumber AS studentNumber,
+            s.studentname AS studentName,
+            l.plan,
+            l.record
         FROM learning_records l
         JOIN students s ON l.student_id = s.id
         WHERE l.test_id = #{testId}
-        AND l.date = #{date}
+        AND l.learn_day = #{date}
         ORDER BY s.studentnumber
     </select>
 </mapper>

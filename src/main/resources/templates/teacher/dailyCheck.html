@@ -40,8 +40,9 @@
 				<td th:text="${l.studentNumber}"></td>
 				<td th:text="${l.studentName}"></td>
 				<td th:text="${l.plan}"></td>
-				<td th:text="${l.record}
-				    th:strings.isEmpty(l.record)} ? 'color:red;' : ''"></td>
+				<td th:text="${l.record}"
+				    th:style="${#strings.isEmpty(l.record)} ? 'color:red;' : ''">
+				</td>
 			</tr>
 		</table>
 		
