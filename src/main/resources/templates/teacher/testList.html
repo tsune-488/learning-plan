@@ -4,19 +4,19 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>テスト一覧</title>
+	<title>学習計画一覧</title>
 </head>
 <body>
-	<h1>学習計画　試験一覧</h1>
+	<h1>学習計画一覧</h1>
 		<table>
 			<tr>
-				<th>テスト一覧</th>
+				<th>学習計画一覧</th>
 			</tr>
 
 			<tr th:each="test : ${tests}">
 				<td>
 				<!-- テスト名 -->
-				<a th:href="@{/teacher/test/{id}/students(id=${test.id})}"
+				<a th:href="@{/teacher/check/date(testId=${test.id})}"
 				    th:text="${test.testName}">
 				</a>
 				</td>

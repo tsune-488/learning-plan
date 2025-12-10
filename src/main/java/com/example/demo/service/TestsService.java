@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.dto.TestListDto;
 import com.example.demo.entity.TestsSetting;
 
 public interface TestsService {
@@ -17,5 +18,8 @@ public interface TestsService {
 	
 	//設定情報の更新
 	void update(TestsSetting testsSetting);
+	
+	//学習計画期間の取得
+	TestListDto getTestById(Integer testId);
 
 }
