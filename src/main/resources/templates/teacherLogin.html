@@ -4,9 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>先生 ログイン画面</title>
+	<link rel="stylesheet" th:href="@{/css/destyle.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
+	<div class="center-all">
 	<form th:action="@{/login}" 
 	      th:object="${loginForm}" 
 	      method="post">
@@ -27,6 +30,7 @@
 		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 		
 	</form>
+	</div>
 </body>
 
 </html>
