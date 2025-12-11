@@ -13,15 +13,18 @@
 <body>
 	<div class="center-all">
 	<h1>教員 管理画面</h1>
-	<a th:href="@{/test/new}">学習計画期間の設定</a>   
+	
+	<div class="menu-container">
+	<a th:href="@{/test/new}" class="btn">学習計画期間の設定</a>   
 	<br>
-	<a th:href="@{/teacher/tests}">学習計画期間一覧</a> 
+	<a th:href="@{/teacher/tests}"class="btn">学習計画期間一覧</a> 
 	
-	
+	<br>
 	<!--ログアウト-->
-	<form action="/login" method="get">
+	<form action="/login" method="get" class="btn-logout">
 	    <button type="submit">ログアウト</button>
 	</form>
+	</div>
 	</div>
 </body>
 </html>	
