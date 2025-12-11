@@ -31,5 +31,4 @@
     <select id="findByNumberAndPassword" resultType="com.example.demo.entity.Students">
         SELECT * FROM students WHERE studentnumber = #{studentNumber} AND studentpassword = #{studentPassword}
     </select>
- 
 </mapper>

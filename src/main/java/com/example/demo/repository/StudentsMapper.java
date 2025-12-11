@@ -21,5 +21,4 @@ public interface StudentsMapper {
 	//ログイン情報の照合
 	Students findByNumberAndPassword(@Param("studentNumber") String studentNumber, 
 			                        @Param("studentPassword") String studentPassword);
-
 }
