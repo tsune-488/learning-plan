@@ -6,21 +6,31 @@
 	<title>生徒配布用URL作成結果</title>
 	<link rel="stylesheet" th:href="@{/css/reset.css}">
 	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<script th:src="@{/js/copy.js}" defer></script>
 </head>
 
 
 <body>
+	<div class="center-all">
 	<h1>学習計画期間の登録完了</h1>
-	<p>
-		このURLを生徒に配布してください。
-		<a th:href="@{${studentUrl}}" th:text="${studentUrl}"></a>
-	</p>
-	<p>生徒配布用URL：URL</p>
-	
+	<br>
+	<p>このURLを生徒に配布してください。</p>
+	<div class="url-area">
+		<span id="loginUrl">
+		<a th:href="@{${studentUrl}}" th:text="${studentUrl}" class="url-box"></a>
+		</span>
+	<button type="button" onclick="copyUrl()" class="button-copy">コピー</button>
+	<br>
+	<span id="copyMessage" class="copy-message">✓コピーしました</span>
+	</div>
+	<br>
 	<!--管理画面に戻る-->
 	<form action="/dashboard" method="get">
 	    <button type="submit">管理画面へ戻る</button>
+	
 	</form>
+	</div>
+	</body>
 
 </body>
 </html>

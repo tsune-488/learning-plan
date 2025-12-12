@@ -3,15 +3,18 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>先生 設定画面</title>
+	<title>先生 新規登録画面</title>
 	<link rel="stylesheet" th:href="@{/css/reset.css}">
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
+	<div class="center-all">
 	<form th:action="@{/teacher/new}" 
 	      th:object="${teachersNewForm}"
 		  method="post">
+		<h1>先生　新規登録</h1>
+		<br>
 		<div><!--学校名の設定-->
 			<label>学校名</label>
 			<input type="text" th:field="*{schoolname}">
@@ -32,10 +35,12 @@
 			<label>先生の名前</label>
 			<input type="text" th:field="*{teachername}">
 		</div>
+		<br>
 			<div>
 				<input type="submit" value="登録">
 			</div>
 	</form>
+	</div>
 </body>
 
 </html>
