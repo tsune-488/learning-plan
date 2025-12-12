@@ -42,7 +42,7 @@ public class StudentSettingController {
 		//entityへの変換
 		Students students = StudentsHelper.convertStudents(form);
 		//登録を実行
-		studentService.insert(students);
+		studentService.registerStudent(students);
 		return "redirect:/students/login?teacherId=" + form.getTeacherId()
 		+ "&testId=" + form.getTestId(); 
 	}

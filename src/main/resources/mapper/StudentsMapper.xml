@@ -11,7 +11,10 @@
     </select>
 
     <!-- 情報の新規登録 -->
-    <insert id="insert" parameterType="com.example.demo.entity.Students">
+    <insert id="insert" 
+            parameterType="com.example.demo.entity.Students" 
+            useGeneratedKeys="true"
+            keyProperty="id">
         INSERT INTO students (teacher_id, test_id, studentnumber, studentname, studentpassword)
         VALUES (#{teacherId}, #{testId}, #{studentnumber}, #{studentname}, #{studentpassword})
     </insert>

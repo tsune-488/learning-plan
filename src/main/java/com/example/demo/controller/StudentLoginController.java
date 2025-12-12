@@ -46,6 +46,12 @@ public class StudentLoginController {
 		String studentNumber = form.getStudentnumber();
 		String studentPassword = form.getStudentpassword();
 		
+		System.out.println(
+		        "DEBUG login: number=" + studentNumber +
+			    ", pass=" + studentPassword +
+			    ", testId=" + testId
+			);
+		
 		//testId
 		if (testId == null) {
 	        model.addAttribute("error", "ログイン方法が不正です。");
@@ -77,4 +83,5 @@ public class StudentLoginController {
         + student.getId() 
         + "&testId=" + form.getTestId();
 	}
+	
 }

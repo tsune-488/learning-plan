@@ -45,6 +45,8 @@ CREATE TABLE students (
 	studentname VARCHAR(20) NOT NULL,
 	--パスワード
 	studentpassword VARCHAR(255) NOT NULL,
+	--生徒IDとテストIDの重複禁止
+	UNIQUE KEY uk_student_login (studentnumber, test_id),
 	--外部キーの設定
 	FOREIGN KEY (teacher_id) REFERENCES teachers(id)
 );

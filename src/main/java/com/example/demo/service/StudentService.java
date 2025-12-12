@@ -16,4 +16,7 @@ public interface StudentService {
 	
 	//ログイン情報の照合
 	Students login(String studentNumber, String studentPassword, Integer testId);
+	
+	//studentIDとtestIDの連携
+	void registerStudent(Students student);
 }

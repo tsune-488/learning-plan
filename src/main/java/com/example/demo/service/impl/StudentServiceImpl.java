@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Students;
+import com.example.demo.repository.StudentTestsMapper;
 import com.example.demo.repository.StudentsMapper;
 import com.example.demo.service.StudentService;
 
@@ -19,6 +20,7 @@ public class StudentServiceImpl implements StudentService {
 
 	//DI
 	private final StudentsMapper studentsMapper;
+	private final StudentTestsMapper studentTestsMapper;
 	
 	@Override
 	public List<Students> selectByTeacherId(Integer teacherId) {
@@ -38,6 +40,14 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Students login(String studentNumber, String studentPassword, Integer testId) {
 		return studentsMapper.findByNumberAndPassword(studentNumber, studentPassword, testId);
+	}
+	
+	@Override
+	public void registerStudent(Students student) {
+		studentsMapper.insert(student);
+		Integer studentId = student.getId();
+		Integer testId = student.getTestId();
+		studentTestsMapper.insert(studentId, testId);
 	}
 }
 

@@ -9,5 +9,10 @@
         AND test_id = #{testId}
         )
     </select>
+    
+    <insert id="insert">
+        INSERT INTO student_tests (student_id, test_id)
+        VALUES (#{studentId}, #{testId})
+    </insert>
  
 </mapper>
