@@ -29,6 +29,10 @@
     
     <!-- ログイン情報の照合 -->
     <select id="findByNumberAndPassword" resultType="com.example.demo.entity.Students">
-        SELECT * FROM students WHERE studentnumber = #{studentNumber} AND studentpassword = #{studentPassword}
+        SELECT * 
+        FROM students 
+        WHERE studentnumber = #{studentNumber} 
+        AND studentpassword = #{studentPassword}
+        AND test_id = #{testId}
     </select>
 </mapper>

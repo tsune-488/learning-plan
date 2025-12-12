@@ -36,8 +36,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	@Override
-	public Students login(String studentNumber, String studentPassword) {
-		return studentsMapper.findByNumberAndPassword(studentNumber, studentPassword);
+	public Students login(String studentNumber, String studentPassword, Integer testId) {
+		return studentsMapper.findByNumberAndPassword(studentNumber, studentPassword, testId);
 	}
 }
 

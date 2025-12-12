@@ -53,7 +53,7 @@ public class StudentLoginController {
 	    }
 		
 		//生徒の検索
-	    Students student = studentService.login(studentNumber, studentPassword);
+	    Students student = studentService.login(studentNumber, studentPassword, testId);
 
 		if (student == null) {
 	        model.addAttribute("error", "番号またはパスワードが違います。");
