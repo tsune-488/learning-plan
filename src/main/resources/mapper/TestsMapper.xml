@@ -2,45 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.repository.TestsMapper">
 
-    <!-- 登録情報をすべて取得 -->
-    <select id="findAll" resultType="com.example.demo.entity.TestsSetting">
-        SELECT id, testname ,startday ,lastday FROM tests   
-    </select>
+	<!-- IDによる取得 -->
+	<select id="findByTeacherAndId"
+		resultType="com.example.demo.entity.TestsSetting">
+		SELECT id, teacher_id, testname, startday, lastday
+		FROM
+		tests
+		WHERE id = #{testId}
+		AND teacher_id = #{teacherId}
+	</select>
 
-    <!-- IDによる取得 -->
-    <select id="findById" parameterType="int" resultType="com.example.demo.entity.TestsSetting">
-        SELECT id, testname, startday, lastday FROM tests WHERE id = #{id}  
-    </select>
+	<!-- テストの新規登録 -->
+	<insert id="insert"
+		parameterType="com.example.demo.entity.TestsSetting"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO tests (teacher_id,
+		testname, startday, lastday)
+		VALUES (#{teacherId}, #{testname},
+		#{startday}, #{lastday})
+	</insert>
 
-    <!-- テストの新規登録 -->
-    <insert id="insert" parameterType="com.example.demo.entity.TestsSetting"
-        useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO tests (testname, startday, lastday)
-        VALUES (#{testname}, #{startday}, #{lastday})
-    </insert>
-    
-    <!-- テスト情報の更新 -->
-    <update id="update" parameterType="com.example.demo.entity.TestsSetting">
-        UPDATE tests SET
-            testname = #{testname},
-            startday = #{startday},
-            lastday = #{lastday}
-        WHERE id = #{id}
-    </update>
-    
-    <!-- テスト一覧の作成 -->
-    <select id="findAllForTeacher"
-        resultType="com.example.demo.dto.TestListDto">
-        SELECT id , testname AS testName
-        FROM tests
-        ORDER BY id
-    </select>
-    
-    <!-- 学習期間一覧を取得 -->
-    <select id="selectTestById" resultType="com.example.demo.dto.TestListDto">
-        SELECT id, testname AS testName,startday, lastday
-        FROM tests
-        WHERE id = #{testId}
-    </select>
+	<!-- テスト情報の更新 -->
+	<update id="update"
+		parameterType="com.example.demo.entity.TestsSetting">
+		UPDATE tests SET
+		testname = #{testname},
+		startday =
+		#{startday},
+		lastday = #{lastday}
+		WHERE id = #{id}
+		AND teacher_id =
+		#{teacherId}
+	</update>
+
+	<!-- テスト一覧の作成 -->
+	<select id="findAllTests"
+		resultType="com.example.demo.dto.TestListDto">
+		SELECT id, testname AS testName, startday, lastday
+		FROM
+		tests
+		WHERE teacher_id = #{teacherId}
+		ORDER BY id
+	</select>
+
+	<!-- 学習期間一覧を取得 -->
+	<select id="selectTestById"
+		resultType="com.example.demo.dto.TestListDto">
+		SELECT id, testname AS testName, startday, lastday
+		FROM
+		tests
+		WHERE id = #{testId}
+		AND teacher_id = #{teacherId}
+	</select>
+
+	<!-- 生徒用：テスト期間取得 -->
+	<select id="findByIdForStudent"
+		resultType="com.example.demo.entity.TestsSetting">
+		SELECT id, startday, lastday
+		FROM tests
+		WHERE id = #{testId}
+	</select>
 
 </mapper>

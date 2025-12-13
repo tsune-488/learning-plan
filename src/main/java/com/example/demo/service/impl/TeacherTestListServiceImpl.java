@@ -21,8 +21,8 @@ public class TeacherTestListServiceImpl implements TeacherTestListService {
 	private final TestsMapper testsMapper;
 	
 	@Override
-	public List<TestListDto> getAllTestList() {
-		return testsMapper.findAllForTeacher();
+	public List<TestListDto> getAllTestList(Integer teacherId) {
+		return testsMapper.findAllTests(teacherId);
 	}
 }
 

@@ -28,6 +28,6 @@ public class Teachers {
     private String classname;
     // 先生の名前
 	@NotBlank(message="先生の名前は必須です")
-    private String teachername;  
+    private String teachername;
 }
 

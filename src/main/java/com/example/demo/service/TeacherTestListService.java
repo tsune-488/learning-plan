@@ -6,5 +6,5 @@ import com.example.demo.dto.TestListDto;
 
 public interface TeacherTestListService {
 	
-	List<TestListDto> getAllTestList();
+	List<TestListDto> getAllTestList(Integer teacherId);
 }

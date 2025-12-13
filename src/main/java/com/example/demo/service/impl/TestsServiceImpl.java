@@ -21,15 +21,20 @@ public class TestsServiceImpl implements TestsService {
 	private final TestsMapper testsMapper;
 
 	@Override
-	public List<TestsSetting> findAll() {
-		return testsMapper.findAll();
-	}
-
+    public List<TestListDto> getAllTests(Integer teacherId) {
+        return testsMapper.findAllTests(teacherId);
+    }
+	
 	@Override
-	public TestsSetting findById(Integer id) {
-		return testsMapper.findById(id);
+	public TestListDto getTestById(Integer teacherId, Integer testId) {
+		return testsMapper.selectTestById(teacherId, testId);
 	}
-
+	
+	@Override
+	public TestsSetting findByIdForStudent(Integer testId) {
+	    return testsMapper.findByIdForStudent(testId);
+	}
+	
 	@Override
 	public void insert(TestsSetting testsSetting) {
 		testsMapper.insert(testsSetting);
@@ -40,9 +45,6 @@ public class TestsServiceImpl implements TestsService {
 		testsMapper.update(testsSetting);
 	}
 	
-	@Override
-	public TestListDto getTestById(Integer testId) {
-		return testsMapper.selectTestById(testId);
-	}
+	
 
 }
