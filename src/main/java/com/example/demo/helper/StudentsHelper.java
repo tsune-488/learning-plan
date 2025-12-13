@@ -9,7 +9,7 @@ public class StudentsHelper {
 	public static Students convertStudents(StudentsNewForm form) {
 		
 		Students students = new Students();
-		students.setTeacherId(form.getTeacherId());
+
 		students.setTestId(form.getTestId());
 		students.setStudentnumber(form.getStudentnumber());
 		students.setStudentname(form.getStudentname());
@@ -22,7 +22,6 @@ public class StudentsHelper {
 	public static StudentsNewForm convertStudentsNewForm(Students students) {
 		
 		StudentsNewForm studentsNewForm = new StudentsNewForm();
-		studentsNewForm.setTeacherId(students.getTeacherId());
 		studentsNewForm.setTestId(students.getTestId());
 		studentsNewForm.setStudentnumber(students.getStudentnumber());
 		studentsNewForm.setStudentname(students.getStudentname());

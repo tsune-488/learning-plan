@@ -12,8 +12,7 @@
 	<div class="center-all">
 		<form th:action="@{/students/new}" th:object="${studentsNewForm}" method="post">
 
-			<!--teacherId と testId-->
-			<input type="hidden" th:field="*{teacherId}">
+			<!--testId-->
 			<input type="hidden" th:field="*{testId}">
 
 			<div><!--出席番号の設定-->

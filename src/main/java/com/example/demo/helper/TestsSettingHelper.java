@@ -10,6 +10,7 @@ public class TestsSettingHelper {
 		
 		TestsSetting testsSetting = new TestsSetting();
 		testsSetting.setId(form.getId());
+		testsSetting.setTeacherId(form.getTeacherId());
 		testsSetting.setTestname(form.getTestname());
 		testsSetting.setStartday(form.getStartday());
 		testsSetting.setLastday(form.getLastday());
@@ -22,6 +23,7 @@ public class TestsSettingHelper {
 		
 		TestsSettingForm testsSettingForm = new TestsSettingForm();
 		testsSettingForm.setId(testsSetting.getId());
+		testsSettingForm.setTeacherId(testsSetting.getTeacherId());
 		testsSettingForm.setTestname(testsSetting.getTestname());
 		testsSettingForm.setStartday(testsSetting.getStartday());
 		testsSettingForm.setLastday(testsSetting.getLastday());

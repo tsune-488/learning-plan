@@ -1,9 +1,8 @@
 -- テーブルが存在したら削除する
-DROP TABLE IF EXISTS student_tests;
 DROP TABLE IF EXISTS learning_records;
 DROP TABLE IF EXISTS students;
-DROP TABLE IF EXISTS teachers;
 DROP TABLE IF EXISTS tests;
+DROP TABLE IF EXISTS teachers;
 
 --ログイン認証を格納するテーブル
 CREATE TABLE teachers (
@@ -29,9 +28,9 @@ CREATE TABLE tests (
 	--テスト名
     testname VARCHAR(25) NOT NULL,
 	--開始日
-	startday DATE,
+	startday DATE NOT NULL,
 	--終了日
-	lastday DATE,
+	lastday DATE NOT NULL,
 	--外部キーの設定
 	FOREIGN KEY (teacher_id) REFERENCES teachers(id)
 	);
@@ -39,6 +38,8 @@ CREATE TABLE tests (
 CREATE TABLE students (
 	--ID
 	id INT AUTO_INCREMENT PRIMARY KEY,
+	--teacherID
+	teacher_id INT NOT NULL,
 	--testsテーブルのID
 	test_id INT NOT NULL,
 	--出席番号
@@ -49,6 +50,9 @@ CREATE TABLE students (
 	studentpassword VARCHAR(255) NOT NULL,
 	--生徒IDとテストIDの重複禁止
 	UNIQUE KEY uk_student_login (studentnumber, test_id),
+	--外部キー
+	FOREIGN KEY (teacher_id) REFERENCES teachers(id),
+	FOREIGN KEY (test_id) REFERENCES tests(id)
 );
 
 CREATE TABLE learning_records (
@@ -61,9 +65,11 @@ CREATE TABLE learning_records (
 	--日付
 	learn_day DATE NOT NULL,
 	--計画の内容
-	plan VARCHAR(255) NOT NULL,
+	plan VARCHAR(255),
 	--実際の学習内容
-	record VARCHAR(255) NOT NULL,
+	record VARCHAR(255),
+	--重複防止
+	UNIQUE KEY uk_learning_day (student_id, test_id, learn_day),
 	--外部キーの設定
 	FOREIGN KEY (student_id) REFERENCES students(id),
 	FOREIGN KEY (test_id) REFERENCES tests(id)

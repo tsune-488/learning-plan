@@ -14,6 +14,6 @@ public class StudentLoginForm {
     // パスワード
     private String studentpassword;
     
-    private Integer teacherId;
+    // テストID
     private Integer testId;
 }

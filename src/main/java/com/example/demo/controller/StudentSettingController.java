@@ -1,11 +1,11 @@
 package com.example.demo.controller;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Students;
 import com.example.demo.form.StudentsNewForm;
@@ -22,14 +22,19 @@ public class StudentSettingController {
 	private final StudentService studentService;
 	
 	//新規登録画面へ
-	@GetMapping("/students/new")
 	public String showNewStudentForm(
-			@RequestParam("teacherId") Integer teacherId,
-			@RequestParam("testId") Integer testId,
-			Model model) {
+	        HttpSession session,
+	        Model model) {
+		
+		Integer testId = (Integer) session.getAttribute("testId");
+		
+		if (testId == null) {
+	        return "redirect:/students/login";
+	    }
+
+		
 		StudentsNewForm form = new StudentsNewForm();
         form.setIsNew(true); 
-        form.setTeacherId(teacherId);
         form.setTestId(testId);
         
         model.addAttribute("studentsNewForm", form);
@@ -38,13 +43,23 @@ public class StudentSettingController {
 	
 	//新規登録を実行
 	@PostMapping("/students/new")
-	public String registerStudents(@ModelAttribute StudentsNewForm form ) {
+	public String registerStudents(@ModelAttribute StudentsNewForm form,
+			                       HttpSession session) {
+		
+		Integer testId = (Integer) session.getAttribute("testId");
+		
+		if (testId == null) {
+	        return "redirect:/students/login";
+	    }
+		
+		form.setTestId(testId);
+
 		//entityへの変換
 		Students students = StudentsHelper.convertStudents(form);
 		//登録を実行
 		studentService.registerStudent(students);
-		return "redirect:/students/login?teacherId=" + form.getTeacherId()
-		+ "&testId=" + form.getTestId(); 
+		
+		return "redirect:/students/login";
 	}
 	
 }

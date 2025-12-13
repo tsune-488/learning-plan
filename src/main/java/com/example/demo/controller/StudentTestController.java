@@ -13,17 +13,15 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class StudentTestController {
-	
-     // 生徒ページ
-	 @GetMapping("/test/{testId}/student")
-	    public String toStudentLogin(@PathVariable Integer testId, Model model) {
-		    StudentLoginForm form = new StudentLoginForm();
-		    form.setTeacherId(testId);
-		     
-		    model.addAttribute("studentLoginForm", form);
-	        model.addAttribute("testId", testId);
-	        
-	        
-	        return "studentLogin"; 
-	    }
+
+	// 生徒ページ
+	@GetMapping("/test/{testId}/student")
+	public String toStudentLogin(@PathVariable Integer testId, Model model) {
+
+		StudentLoginForm form = new StudentLoginForm();
+		form.setTestId(testId);
+
+		model.addAttribute("studentLoginForm", form);
+		return "studentLogin";
 	}
+}

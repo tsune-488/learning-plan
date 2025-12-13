@@ -2,40 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.repository.StudentsMapper">
 
-    <!-- 登録情報をすべて取得 -->
-    <select id="selectByTeacherId" resultType="com.example.demo.entity.Students">
-        SELECT id,teacher_id, test_id, studentnumber, studentname, studentpassword
-        FROM students
-        WHERE teacher_id = #{teacherId}
-        ORDER BY studentnumber
-    </select>
+	<!-- 登録情報をすべて取得 -->
+	<select id="selectByTestId"
+		resultType="com.example.demo.entity.Students">
+		SELECT id, teacher_id, test_id, studentnumber, studentname, studentpassword
+		FROM students
+		WHERE test_id = #{testId}
+		ORDER BY studentnumber
+	</select>
 
-    <!-- 情報の新規登録 -->
-    <insert id="insert" 
-            parameterType="com.example.demo.entity.Students" 
-            useGeneratedKeys="true"
-            keyProperty="id">
-        INSERT INTO students (teacher_id, test_id, studentnumber, studentname, studentpassword)
-        VALUES (#{teacherId}, #{testId}, #{studentnumber}, #{studentname}, #{studentpassword})
-    </insert>
+	<!-- 情報の新規登録 -->
+	<insert id="insert"
+		parameterType="com.example.demo.entity.Students"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO students (teacher_id, test_id, studentnumber, studentname,
+		studentpassword)
+		VALUES (#{teacherId}, #{testId}, #{studentnumber}, #{studentname},
+		#{studentpassword})
+	</insert>
 
-    <!-- 登録情報の更新 -->
-    <update id="update" parameterType="com.example.demo.entity.Students">
-        UPDATE students SET
-            teacher_id = #{teacherId},
-            test_id = #{testId},
-            studentnumber = #{studentnumber},
-            studentname = #{studentname},
-            studentpassword = #{studentpassword}
-        WHERE id = #{id}
-    </update>
-    
-    <!-- ログイン情報の照合 -->
-    <select id="findByNumberAndPassword" resultType="com.example.demo.entity.Students">
-        SELECT * 
-        FROM students 
-        WHERE studentnumber = #{studentNumber} 
-        AND studentpassword = #{studentPassword}
-        AND test_id = #{testId}
-    </select>
+	<!-- 登録情報の更新 -->
+	<update id="update"
+		parameterType="com.example.demo.entity.Students">
+		UPDATE students SET
+		teacher_id = #{teacherId},
+		test_id = #{testId},
+		studentnumber = #{studentnumber},
+		studentname = #{studentname},
+		studentpassword = #{studentpassword}
+		WHERE id = #{id}
+	</update>
+
+	<!-- ログイン情報の照合 -->
+	<select id="findByNumberAndPassword"
+		resultType="com.example.demo.entity.Students">
+		SELECT *
+		FROM students
+		WHERE studentnumber = #{studentNumber}
+		AND studentpassword = #{studentPassword}
+		AND test_id = #{testId}
+	</select>
 </mapper>

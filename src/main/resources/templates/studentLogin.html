@@ -13,7 +13,6 @@
 		<form th:action="@{/students/login}" th:object="${studentLoginForm}" method="post">
 			<h1>学習計画表</h1>
 
-			<input type="hidden" th:field="*{teacherId}">
 			<input type="hidden" th:field="*{testId}">
 
 
@@ -38,7 +37,6 @@
 		<br>
 		<h2>この学習期間でまだ登録していない方は、新規登録をしてください</h2>
 		<form th:action="@{/students/new}" method="get">
-			<input type="hidden" name="teacherId" th:value="${studentLoginForm.teacherId}">
 			<input type="hidden" name="testId" th:value="${studentLoginForm.testId}">
 			<div class="button-area">
 				<button class="btn-primary">新規設定</button>
