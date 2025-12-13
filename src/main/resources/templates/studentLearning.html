@@ -9,16 +9,15 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
-
+<body class="student">
 	<h1>学習記録入力</h1>
 
 	<form th:action="@{/student/save}" method="post">
-	<!-- 生徒IDとテストIDは必須（Controller でセット） -->
-    <input type="hidden" name="studentId" th:value="${studentId}">
-	<input type="hidden" name="testId" th:value="${testId}">
+		<!-- 生徒IDとテストIDは必須（Controller でセット） -->
+		<input type="hidden" name="studentId" th:value="${studentId}">
+		<input type="hidden" name="testId" th:value="${testId}">
 
-		<table>
+		<table class="leaning-area">
 			<tr>
 				<th>日付</th>
 				<th>学習計画</th>
@@ -26,27 +25,23 @@
 			</tr>
 
 			<tr th:each="date,stat : ${dateList}">
-			  <td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
-				
+				<td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
+
 				<!-- 計画 -->
 				<td>
-				    <input type="text"
-				      th:name="'plan_' + ${stat.index}"
-				      th:value="${viewList[stat.index] != null
-				        ? viewList[stat.index].plan : ''}">
-				  </td>
+					<input type="text" th:name="'plan_' + ${stat.index}" th:value="${viewList[stat.index] != null
+				        ? viewList[stat.index].plan : ''}" class="learning-text">
+				</td>
 
 				<!-- 実施内容 -->
 				<td>
-				    <input type="text"
-				      th:name="'record_' + ${stat.index}"
-				      th:value="${viewList[stat.index] != null
-				        ? viewList[stat.index].record : ''}">
-				 </td>
+					<input type="text" th:name="'record_' + ${stat.index}" th:value="${viewList[stat.index] != null
+				        ? viewList[stat.index].record : ''}" class="learning-text">
+				</td>
 			</tr>
 		</table>
-		<button type="submit">保存する</button>
+		<button type="submit" class="btn-center">保存する</button>
 	</form>
-
 </body>
+
 </html>

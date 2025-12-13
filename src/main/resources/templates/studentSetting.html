@@ -8,33 +8,34 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
-	<form th:action="@{/students/new}" 
-	      th:object="${studentsNewForm}"
-		  method="post">
-		
-		<!--teacherId と testId-->
-		<input type="hidden" th:field="*{teacherId}">  
-		<input type="hidden" th:field="*{testId}">
-		  
-		<div><!--出席番号の設定-->
-			<label>出席番号</label>
-			<input type="text" th:field="*{studentnumber}">
-		</div>
-		<div><!--生徒名の設定-->
-			<label>名前</label>
-			<input type="text" th:field="*{studentname}">
-		</div>
-		
-		<div><!--パスワードの設定-->
-			<label>パスワード</label>
-			<input type="password" th:field="*{studentpassword}">
-		</div>
-		<p>パスワードは忘れないものにしましょう。</p>
-			<div>
+<body class="student">
+	<div class="center-all">
+		<form th:action="@{/students/new}" th:object="${studentsNewForm}" method="post">
+
+			<!--teacherId と testId-->
+			<input type="hidden" th:field="*{teacherId}">
+			<input type="hidden" th:field="*{testId}">
+
+			<div><!--出席番号の設定-->
+				<label>出席番号</label>
+				<input type="text" th:field="*{studentnumber}">
+			</div>
+			<div><!--生徒名の設定-->
+				<label>名前</label>
+				<input type="text" th:field="*{studentname}">
+			</div>
+
+			<div><!--パスワードの設定-->
+				<label>パスワード</label>
+				<input type="password" th:field="*{studentpassword}">
+			</div>
+			<p>※パスワードは忘れないものにしましょう。</p>
+
+			<div class="btn-center">
 				<input type="submit" value="登録">
 			</div>
-	</form>
+		</form>
+	</div>
 </body>
 
 </html>

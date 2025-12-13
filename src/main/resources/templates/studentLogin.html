@@ -8,40 +8,44 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<body>
-	<form th:action="@{/students/login}" 
-	      th:object="${studentLoginForm}" 
-	      method="post">
-		<h1>学習計画表</h1>
-		<h2>ログイン</h2>
-			
-		<input type="hidden" th:field="*{teacherId}">	
-		<input type="hidden" th:field="*{testId}">
-		
-		<div><!--出席番号-->
-			<label>出席番号</label>
-			<input type="text" th:field="*{studentnumber}">
-		</div>
-		<div><!--パスワード-->
-			<label>パスワード</label>
-			<input type="password" th:field="*{studentpassword}">
-		</div>
-		<div>
-			<input type="submit" value="ログイン">
-		</div>
-	</form>
-	
+<body class="student">
+	<div class="center-all">
+		<form th:action="@{/students/login}" th:object="${studentLoginForm}" method="post">
+			<h1>学習計画表</h1>
+
+			<input type="hidden" th:field="*{teacherId}">
+			<input type="hidden" th:field="*{testId}">
+
+
+			<div><!--出席番号-->
+				<label>出席番号</label>
+				<input type="text" th:field="*{studentnumber}">
+			</div>
+			<br>
+			<div><!--パスワード-->
+				<label>パスワード</label>
+				<input type="password" th:field="*{studentpassword}">
+			</div>
+			<br>
+			<div class="btn-center">
+				<input type="submit" value="ログイン">
+			</div>
+		</form>
+
 		<!--エラー表示-->
 		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
-		
+
 		<br>
-		<h2>新規登録</h2>
-			<form th:action="@{/students/new}" method="get">
-			    <input type="hidden" name="teacherId" th:value="${studentLoginForm.teacherId}">
-			    <input type="hidden" name="testId" th:value="${studentLoginForm.testId}">
-				<button type="submit">新規設定</button>
-			</form>
-	
+		<h2>この学習期間でまだ登録していない方は、新規登録をしてください</h2>
+		<form th:action="@{/students/new}" method="get">
+			<input type="hidden" name="teacherId" th:value="${studentLoginForm.teacherId}">
+			<input type="hidden" name="testId" th:value="${studentLoginForm.testId}">
+			<div class="button-area">
+				<button class="btn-primary">新規設定</button>
+			</div>
+		</form>
+	</div>
+
 </body>
 
 </html>

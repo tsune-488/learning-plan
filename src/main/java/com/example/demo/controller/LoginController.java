@@ -31,9 +31,9 @@ public class LoginController {
 	
 	//管理画面へ
 	@PostMapping("/login")
-	public String doLogin(@ModelAttribute LoginForm form, Model model, HttpSession session) {
+	public String doLogin(@ModelAttribute LoginForm form, HttpSession session, Model model) {
 		
-		// ServiceO
+		// Service
 	    Teachers teachers = teachersService.login(form.getEmail(), form.getPassword());
 
 	    if (teachers == null) {
@@ -44,14 +44,21 @@ public class LoginController {
 	    }
 	    
 	    //セッションに先生IDを保持
-	    session.setAttribute("teacherId", teachers.getId());
+	    session.setAttribute("loginTeacher", teachers);
 	    // ログイン成功
 		return "redirect:/dashboard";
 	}
 	
 	@GetMapping("/dashboard")
-	public String showDashboard() {
-		return "/dashboard";
+	public String showDashboard(HttpSession session, Model model) {
+		Teachers teacher = (Teachers) session.getAttribute("loginTeacher"); 
+		
+		if (teacher == null) {
+			return "redirect:/login";
+		}
+		
+		model.addAttribute("teacher", teacher);
+		
+		return "dashboard";
 	}
-	
 }

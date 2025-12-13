@@ -12,7 +12,13 @@
 
 <body>
 	<div class="center-all">
-	<h1>教員 管理画面</h1>
+	<h2>
+		<span th:text="${teacher.schoolname}"></span>
+	</h2>
+	<h1>
+		<span th:text="${teacher.teachername}"></span> 管理画面
+	</h1>
+	
 	
 	<div class="menu-container">
 	<a th:href="@{/test/new}" class="btn">学習計画期間の設定</a>   

@@ -4,12 +4,12 @@ VALUES
 ('一中', 'tune@email', 'pass', '1A', '恒');
 
 --テストダミーデータの追加
-INSERT INTO tests (testname, startday, lastday) 
-VALUES ('期末テスト','2025-12-01', CURRENT_TIMESTAMP);
+INSERT INTO tests (teacher_id, testname, startday, lastday) 
+VALUES (1,'期末テスト','2025-12-01', '2025-12-05');
 
 --生徒ダミーデータの追加
-INSERT INTO students (teacher_id, test_id, studentnumber, studentname, studentpassword) 
-VALUES (1,1,'11','太郎　花子', 'pass');
+INSERT INTO students (test_id, studentnumber, studentname, studentpassword) 
+VALUES (1,'11','試験　花子', 'pass');
 
 --計画ダミーデータの追加
 INSERT INTO learning_records (student_id, test_id, learn_day, plan, record)
