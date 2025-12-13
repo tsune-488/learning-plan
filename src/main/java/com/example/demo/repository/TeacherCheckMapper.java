@@ -11,6 +11,7 @@ import com.example.demo.dto.TeacherCheckDto;
 public interface TeacherCheckMapper {
 	//日付とテストIDでチェック一覧を取得
 	List<TeacherCheckDto> selectCheckListByDaily(
+			@Param("teacherId") Integer teacherId,
 			@Param("testId") Integer testId,
 			@Param("date") String date);
 }

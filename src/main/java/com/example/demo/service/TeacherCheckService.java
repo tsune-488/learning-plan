@@ -6,5 +6,5 @@ import com.example.demo.dto.TeacherCheckDto;
 
 public interface TeacherCheckService {
 	
-	List<TeacherCheckDto> selectCheckListByDaily(Integer testId,String date);
+	List<TeacherCheckDto> selectCheckListByDaily(Integer teacherId,Integer testId,String date);
 }

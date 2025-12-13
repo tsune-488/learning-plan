@@ -11,7 +11,9 @@
             l.record
         FROM learning_records l
         JOIN students s ON l.student_id = s.id
-        WHERE l.test_id = #{testId}
+        JOIN tests t ON l.test_id = t.id
+        WHERE t.teacher_id = #{teacherId} 
+        AND t.id = #{testId}
         AND l.learn_day = #{date}
         ORDER BY s.studentnumber
     </select>

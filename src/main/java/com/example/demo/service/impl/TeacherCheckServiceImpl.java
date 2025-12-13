@@ -21,8 +21,8 @@ public class TeacherCheckServiceImpl implements TeacherCheckService {
 	private final TeacherCheckMapper teacherCheckMapper;
 	
 	@Override
-	public List<TeacherCheckDto> selectCheckListByDaily(Integer testId,String date){
-		return teacherCheckMapper.selectCheckListByDaily(testId, date);
+	public List<TeacherCheckDto> selectCheckListByDaily(Integer teacherId,Integer testId, String date){
+		return teacherCheckMapper.selectCheckListByDaily(teacherId ,testId, date);
 	}
 }
 
