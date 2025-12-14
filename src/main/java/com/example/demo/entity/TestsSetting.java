@@ -17,7 +17,7 @@ public class TestsSetting {
     // ID
 	private Integer id;
 	//先生ID
-	@NotBlank(message="先生IDは必須です")
+	@NotNull(message="先生IDは必須です")
 	private Integer teacherId;
 	// テスト名
 	@NotBlank(message="テスト名は必須です")

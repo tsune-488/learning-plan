@@ -22,5 +22,4 @@ public interface TestsService {
 	//設定情報の更新
 	void update(TestsSetting testsSetting);
 	
-	
 }

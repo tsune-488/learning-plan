@@ -58,7 +58,11 @@
 	<!-- 生徒用：テスト期間取得 -->
 	<select id="findByIdForStudent"
 		resultType="com.example.demo.entity.TestsSetting">
-		SELECT id, startday, lastday
+		SELECT id,
+		teacher_id AS teacherId,
+		testname,
+		startday,
+		lastday
 		FROM tests
 		WHERE id = #{testId}
 	</select>

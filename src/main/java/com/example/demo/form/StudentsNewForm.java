@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentsNewForm {
+	
+	//先生のID
+	private Integer teacherId;
 	//テストのID
 	private Integer testId;
 	// 出席番号
