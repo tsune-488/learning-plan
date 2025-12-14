@@ -13,9 +13,6 @@
 	<h1>学習記録入力</h1>
 
 	<form th:action="@{/student/save}" method="post">
-		<!-- 生徒IDとテストIDは必須（Controller でセット） -->
-		<input type="hidden" name="studentId" th:value="${studentId}">
-		<input type="hidden" name="testId" th:value="${testId}">
 
 		<table class="leaning-area">
 			<tr>
@@ -24,6 +21,7 @@
 				<th>学習内容</th>
 			</tr>
 
+			<!--日付の数が可変のためHttServletRequestとth:eachで学習期間の日付をループで表示-->
 			<tr th:each="date,stat : ${dateList}">
 				<td th:text="${#temporals.format(date, 'M/d (E)')}"></td>
 

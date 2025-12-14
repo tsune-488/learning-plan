@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.dto.TestListDto;
 import com.example.demo.entity.LearningRecord;
 import com.example.demo.entity.TestsSetting;
 import com.example.demo.service.LearningRecordService;
@@ -42,11 +41,11 @@ public class LearningRecordController {
 		Integer testId = (Integer) session.getAttribute("testId");
 
 		if (studentId == null || testId == null) {
-			return "redirect:/students/login";
+			return "redirect:/students/error";
 		}
 
 		// テスト期間を取得
-		TestListDto testDay = testsService.getTestById((Integer) session.getAttribute("teacherId"), testId);
+		TestsSetting testDay = testsService.findByIdForStudent(testId);
 		LocalDate start = testDay.getStartday();
 		LocalDate end = testDay.getLastday();
 
@@ -79,6 +78,7 @@ public class LearningRecordController {
 				continue;
 			}
 
+			//生徒IDと照合し、データを取得
 			LearningRecord learningRecord = new LearningRecord();
 
 			learningRecord.setStudentId(studentId);
@@ -98,18 +98,18 @@ public class LearningRecordController {
 		}
 
 		model.addAttribute("msg", "保存しました");
-		return "redirect:/students/learning?studentId=" + studentId + "&testId=" + testId;
+		return "redirect:/students/learning";
 	}
 
 	@GetMapping("/students/learning")
 	public String showLearning(HttpSession session, Model model) {
-        
+
 		//セッションから取得
 		Integer studentId = (Integer) session.getAttribute("studentId");
 		Integer testId = (Integer) session.getAttribute("testId");
 
 		if (studentId == null || testId == null) {
-			return "redirect:/students/login";
+			return "redirect:/students/error";
 		}
 
 		//テストの日程の取得
@@ -148,7 +148,5 @@ public class LearningRecordController {
 		model.addAttribute("viewList", viewList);
 
 		return "studentLearning";
-
 	}
-
 }

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Students;
 import com.example.demo.form.StudentLoginForm;
@@ -27,9 +26,16 @@ public class StudentLoginController {
 	
 	//ログイン画面
 	@GetMapping("/students/login")
-	public String showLogin(@RequestParam("testId") Integer testId,
-	                        Model model) {
+	public String showLogin(HttpSession session, Model model) {
 
+		
+		//セッション
+		Integer testId = (Integer) session.getAttribute("testId");
+		
+	    if (testId == null) {
+	        return "redirect:/students/error"; 
+	    }
+		
 		StudentLoginForm form = new StudentLoginForm();
 	    form.setTestId(testId);
 
@@ -39,10 +45,17 @@ public class StudentLoginController {
 	//ログイン処理
 	@PostMapping("/students/login")
 	public String doLogin(@ModelAttribute StudentLoginForm form, 
-			              HttpSession session,Model model) {
+			              HttpSession session,
+			              Model model) {
 		
-		Integer testId = form.getTestId();
+		//セッション
+		Integer testId = (Integer) session.getAttribute("testId");
+	    
+		if (testId == null) {
+	        return "redirect:/students/error";
+	    }
 		
+		//ログイン情報の照合
 		Students student = studentService.login(
 		            form.getStudentnumber(),
 		            form.getStudentpassword(),
@@ -55,8 +68,8 @@ public class StudentLoginController {
 	        return "studentLogin";
 	    }
 		
+		//この学習計画期間に登録されているか
 		Integer studentId = student.getId();
-		
 		
 		if (!studentTestsService.isStudentInTest(studentId, testId)) {
 	        model.addAttribute("error", "この学習期間には登録されていません。");
@@ -66,9 +79,7 @@ public class StudentLoginController {
 
 		//セッションに保存
 	    session.setAttribute("studentId", studentId);
-	    session.setAttribute("testId", testId);
 
 	    return "redirect:/students/learning";
 	}
-	
 }
