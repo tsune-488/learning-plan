@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,14 +33,21 @@ public class LoginController {
 	
 	//管理画面へ
 	@PostMapping("/login")
-	public String doLogin(@ModelAttribute LoginForm form, HttpSession session, Model model) {
+	public String doLogin(@Valid @ModelAttribute LoginForm form, 
+			BindingResult result,
+			HttpSession session, 
+			Model model) {
+		
+		//入力チェックエラー
+		if (result.hasErrors()) {
+	        return "teacherLogin";
+	    }
 		
 		// Service
 	    Teachers teachers = teachersService.login(form.getEmail(), form.getPassword());
 
+	    // ID・パス不一致によるログイン失敗
 	    if (teachers == null) {
-	        // ログイン失敗
-	        model.addAttribute("loginForm", new LoginForm());
 	        model.addAttribute("error", "メールアドレス または パスワードが違います");
 	        return "teacherLogin";
 	    }

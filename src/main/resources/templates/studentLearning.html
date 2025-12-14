@@ -16,9 +16,9 @@
 
 		<table class="leaning-area">
 			<tr>
-				<th>日付</th>
-				<th>学習計画</th>
-				<th>学習内容</th>
+				<th class="col-10">日付</th>
+				<th class="col-40">学習計画</th>
+				<th class="col-40">学習内容</th>
 			</tr>
 
 			<!--日付の数が可変のためHttServletRequestとth:eachで学習期間の日付をループで表示-->
@@ -38,7 +38,9 @@
 				</td>
 			</tr>
 		</table>
-		<button type="submit" class="btn-center">保存する</button>
+		<div class="btn-center">
+			<button type="submit" class="bot-keep">保存する</button>
+		</div>
 	</form>
 </body>
 

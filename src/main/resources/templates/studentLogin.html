@@ -15,16 +15,18 @@
 
 			<div>
 				<label>出席番号</label>
-				<input type="text" th:field="*{studentnumber}">
+				<input type="text" th:field="*{studentnumber}" required>
+				<p th:if="${#fields.hasErrors('studentnumber')}" th:errors="*{studentnumber}"></p>
 			</div>
 			<br>
-			
+
 			<div>
 				<label>パスワード</label>
-				<input type="password" th:field="*{studentpassword}">
+				<input type="password" th:field="*{studentpassword}"  required>
+				<p th:if="${#fields.hasErrors('studentpassword')}" th:errors="*{studentpassword}"></p>
 			</div>
 			<br>
-			
+
 			<div class="btn-center">
 				<input type="submit" value="ログイン" class="btn-login">
 			</div>
@@ -37,7 +39,7 @@
 		<h2>この学習期間でまだ登録していない方は、新規登録をしてください</h2>
 		<form th:action="@{/student/new}" method="get">
 			<div class="button-area">
-				<button  class="btn-login">新規設定</button>
+				<button class="btn-login">新規設定</button>
 			</div>
 		</form>
 	</div>

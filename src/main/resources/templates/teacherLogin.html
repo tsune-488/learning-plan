@@ -16,11 +16,15 @@
 		<h1>ログイン</h1>
 		<div><!--メールアドレス-->
 			<label>メールアドレス</label>
-			<input type="email" th:field="*{email}">
+			<input type="email" th:field="*{email}" required>
+			<p th:if="${#fields.hasErrors('email')}"
+			   th:errors="*{email}"></p>
 		</div>
 		<div><!--パスワード-->
 			<label>パスワード</label>
-			<input type="password" th:field="*{password}">
+			<input type="password" th:field="*{password}" required>
+			<p th:if="${#fields.hasErrors('password')}"
+			   th:errors="*{password}"></p>
 		</div>
 		<br>
 		<div class="btn-center">
