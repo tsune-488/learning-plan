@@ -6,26 +6,28 @@
 	<meta charset="UTF-8">
 	<title>学習計画一覧</title>
 	<link rel="stylesheet" th:href="@{/css/destyle.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-	<h1>学習計画一覧</h1>
-		<table>
+	<div class="center-all">
+		<h1>学習計画一覧</h1>
+		<table class="test-list">
 			<tr>
 				<th>学習計画一覧</th>
 			</tr>
 
 			<tr th:each="test : ${tests}">
 				<td>
-				<!-- テスト名 -->
-				<a th:href="@{/teacher/check/date(testId=${test.id})}"
-				    th:text="${test.testName}">
-				</a>
+					<!-- テスト名 -->
+					<a th:href="@{/teacher/check/date(testId=${test.id})}" th:text="${test.testName}">
+					</a>
 				</td>
 			</tr>
 		</table>
-		
-		<a th:href="@{/dashboard}">戻る</a>
 
+		<a th:href="@{/dashboard}" class="btn-back">戻る</a>
+	</div>
 </body>
+
 </html>

@@ -22,11 +22,12 @@
 	<hr>
 	
 	<!--名簿一覧を表示-->
+	<div class="center-area">
 	<h2>登録生徒一覧</h2>
-			<table border="1">
+			<table border="1" class="student-list">
 				<tr>
-					<th>出席番号</th>
-					<th>名前</th>
+					<th class="col-10">出席番号</th>
+					<th class="col-60">名前</th>
 				</tr>
 
 				<tr th:each="s : ${students}">
@@ -35,8 +36,8 @@
 				</tr>
 			</table>
 			
-			<a th:href="@{/teacher/tests}">戻る</a>
+			<a th:href="@{/teacher/tests}" class="btn-back">戻る</a>
 
-	
+	</div>
 </body>
 </html>

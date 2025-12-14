@@ -74,10 +74,6 @@ public class StudentSettingController {
 		//entityへの変換
 		Students students = StudentsHelper.convertStudents(form);
 		
-		 // ☆確認テスト
-	    System.out.println("form.teacherId=" + form.getTeacherId());
-	    System.out.println("students.teacherId=" + students.getTeacherId());
-		
 		//登録を実行
 		studentService.registerStudent(students);
 
