@@ -22,13 +22,7 @@ public class TeacherController {
 	
 	//DI
 	private final TeachersService teachersService;
-	
-	//トップ画面
-	@GetMapping("/")
-	public String showTop() {
-		return "top";
-	}
-	
+		
 	//新規登録画面へ
 	@GetMapping("/teacher/new")
 	public String showNewTeacherForm(Model model) {

@@ -2,15 +2,14 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.TeacherCheckDto;
-import com.example.demo.entity.Teachers;
+import com.example.demo.security.TeacherUserDetails;
 import com.example.demo.service.TeacherCheckService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,30 +18,28 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TeacherCheckController {
 	
-	//DI
-	private final TeacherCheckService teacherCheckService;
-	
-     // 生徒ページ
-	 @GetMapping("/teacher/check")
-	    public String showCheckList(
-	    		@RequestParam("testId") Integer testId,
-	    		@RequestParam("date") String date , 
-	    		HttpSession session,
-	    		Model model) {
-		 
-		    Teachers teacher = (Teachers) session.getAttribute("loginTeacher");
+	// DI
+		private final TeacherCheckService teacherCheckService;
+		
+		// 学習記録チェック画面
+		@GetMapping("/teacher/check")
+		public String showCheckList(
+		        @RequestParam("testId") Integer testId,
+		        @RequestParam("date") String date,
+		        @AuthenticationPrincipal TeacherUserDetails userDetails,
+		        Model model) {
 
-		    if (teacher == null) {
-	            return "redirect:/login";
-	        }
-		    
-		    List<TeacherCheckDto> list = 
-		    		teacherCheckService.selectCheckListByDaily(teacher.getId(), testId, date);
-		    
+		    List<TeacherCheckDto> list =
+		            teacherCheckService.selectCheckListByDaily(
+		                    userDetails.getTeacher().getId(),
+		                    testId,
+		                    date
+		            );
+
 		    model.addAttribute("list", list);
 		    model.addAttribute("testId", testId);
 		    model.addAttribute("date", date);
-	        
-	        return "teacher/dailycheck"; 
-	    }
+
+		    return "teacher/dailycheck";
+		}
 	}

@@ -21,5 +21,8 @@ public interface TeachersMapper {
 	//ログイン情報の照合
 	Teachers findByEmailAndPassword(@Param("email") String email, 
 			                        @Param("password") String password);
+	
+	//先生email
+	Teachers findByEmail(String email);
 
 }

@@ -10,31 +10,35 @@
 
 <body>
 	<div class="center-all">
-	<form th:action="@{/login}" 
-	      th:object="${loginForm}" 
-	      method="post">
-		<h1>ログイン</h1>
-		<div><!--メールアドレス-->
-			<label>メールアドレス</label>
-			<input type="email" th:field="*{email}" required>
-			<p th:if="${#fields.hasErrors('email')}"
-			   th:errors="*{email}"></p>
-		</div>
-		<div><!--パスワード-->
-			<label>パスワード</label>
-			<input type="password" th:field="*{password}" required>
-			<p th:if="${#fields.hasErrors('password')}"
-			   th:errors="*{password}"></p>
-		</div>
-		<br>
-		<div class="btn-center">
-			<input type="submit" value="ログイン" class="btn-login">
-		</div>
-		
-		<!--エラー表示-->
-		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
-		
-	</form>
+		<form th:action="@{/login}" method="post">
+			<h1>ログイン</h1>
+
+			<div>
+				<label>メールアドレス</label>
+				<input type="email" name="username" required>
+			</div>
+
+			<div>
+				<label>パスワード</label>
+				<input type="password" name="password" required>
+			</div>
+
+			<br>
+
+			<div class="btn-center">
+				<input type="submit" value="ログイン" class="btn-login">
+			</div>
+
+			<!--エラー表示-->
+			<p th:if="${param.error}" style="color:red;">
+				メールアドレスまたはパスワードが違います
+			</p>
+
+			<p th:if="${param.logout}">
+				ログアウトしました
+			</p>
+
+		</form>
 	</div>
 </body>
 

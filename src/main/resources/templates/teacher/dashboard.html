@@ -12,25 +12,26 @@
 
 <body>
 	<div class="center-all">
-	<h2>
-		<span th:text="${teacher.schoolname}"></span>
-	</h2>
-	<h1>
-		<span th:text="${teacher.teachername}"></span> 管理画面
-	</h1>
-	
-	
-	<div class="menu-container">
-	<a th:href="@{/test/new}" class="btn">学習計画期間の設定</a>   
-	<br>
-	<a th:href="@{/teacher/tests}"class="btn">学習計画期間一覧</a> 
-	
-	<br>
-	<!--ログアウト-->
-	<form action="/login" method="get" class="btn-center">
-	    <button type="submit" class="btn-logout">ログアウト</button>
-	</form>
-	</div>
+		<h2>
+			<span th:text="${teacher.schoolname}"></span>
+		</h2>
+		<h1>
+			<span th:text="${teacher.teachername}"></span> 管理画面
+		</h1>
+
+
+		<div class="menu-container">
+			<a th:href="@{/test/new}" class="btn">学習計画期間の設定</a>
+			<br>
+			<a th:href="@{/teacher/tests}" class="btn">学習計画期間一覧</a>
+
+			<br>
+			<!--ログアウト-->
+			<form th:action="@{/logout}" method="post" class="btn-center">
+				<button type="submit" class="btn-logout">ログアウト</button>
+			</form>
+		</div>
 	</div>
 </body>
-</html>	
+
+</html>

@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,8 @@ public class TeachersServiceImpl implements TeachersService {
 
 	//DI
 	private final TeachersMapper teachersMapper;
-	
+	private final PasswordEncoder passwordEncoder;
+
 	@Override
 	public List<Teachers> selectAll() {
 		return teachersMapper.selectAll();
@@ -26,6 +28,7 @@ public class TeachersServiceImpl implements TeachersService {
 
 	@Override
 	public void insert(Teachers teachers) {
+		teachers.setPassword(passwordEncoder.encode(teachers.getPassword()));
 		teachersMapper.insert(teachers);
 	}
 
@@ -33,9 +36,9 @@ public class TeachersServiceImpl implements TeachersService {
 	public void update(Teachers teachers) {
 		teachersMapper.update(teachers);
 	}
-	
-	@Override
-	public Teachers login(String email, String password) {
-		return teachersMapper.findByEmailAndPassword(email, password);
-	}
+
+	//@Override
+	//public Teachers login(String email, String password) {
+	//	return teachersMapper.findByEmailAndPassword(email, password);
+	//}
 }

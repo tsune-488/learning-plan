@@ -125,7 +125,7 @@ a {
 }
 
 body {
-	background-image: url("/image/css-blue.png");
+	background-image: url("/images/css-blue.png");
 	background-size: 300px 240px;
 	background-repeat: repeat;
 	position: relative;
@@ -234,7 +234,7 @@ input[type="date"] {
 
 
 body.student {
-	background-image: url("/image/css-orange.png");
+	background-image: url("/images/css-orange.png");
 	background-size: 300px 240px;
 	background-repeat: repeat;
 	position: relative;

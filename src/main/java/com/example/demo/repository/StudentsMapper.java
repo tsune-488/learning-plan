@@ -19,7 +19,7 @@ public interface StudentsMapper {
 	void update(Students students);
 	
 	//ログイン情報の照合
-	Students findByNumberAndPassword(@Param("studentNumber") String studentNumber, 
-			                        @Param("studentPassword") String studentPassword,
-			                        @Param("testId") Integer testId);
+	Students findByStudentnumberAndTestId(
+		    @Param("studentnumber") String studentnumber,
+		    @Param("testId") Integer testId);
 }

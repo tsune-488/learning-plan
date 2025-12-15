@@ -35,10 +35,10 @@ public class StudentServiceImpl implements StudentService {
 		studentsMapper.update(students);
 	}
 	
-	@Override
-	public Students login(String studentNumber, String studentPassword, Integer testId) {
-		return studentsMapper.findByNumberAndPassword(studentNumber, studentPassword, testId);
-	}
+	//@Override
+	//public Students login(String studentNumber, String studentPassword, Integer testId) {
+	//	return studentsMapper.findByNumberAndPassword(studentNumber, studentPassword, testId);
+	//}
 	
 	@Override
 	public void registerStudent(Students student) {
