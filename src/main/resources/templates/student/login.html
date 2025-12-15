@@ -10,41 +10,41 @@
 
 <body class="student">
 	<div class="center-all">
-		<form th:action="@{/login}" method="post">
-			<input type="hidden" name="testId" th:value="${testId}">
+		<form th:action="@{/students/login}"
+		      th:object="${studentLoginForm}"
+		      method="post">
+
+			<input type="hidden" th:field="*{testId}">
 
 			<h1>学習計画表</h1>
 
 			<div>
 				<label>出席番号</label>
-				<input type="text" name="username" required>
+				<input type="text" th:field="*{studentnumber}">
+				<p th:if="${#fields.hasErrors('studentnumber')}"
+				   th:errors="*{studentnumber}"></p>
 			</div>
-			<br>
 
 			<div>
 				<label>パスワード</label>
-				<input type="password" name="password" required>
+				<input type="password" th:field="*{studentpassword}">
+				<p th:if="${#fields.hasErrors('studentpassword')}"
+				   th:errors="*{studentpassword}"></p>
 			</div>
-			<br>
 
 			<div class="btn-center">
 				<input type="submit" value="ログイン" class="btn-login">
 			</div>
+
+			<p th:if="${error}" style="color:red;">
+				<span th:text="${error}"></span>
+			</p>
 		</form>
 
-		<!--エラー表示-->
-		<p th:if="${param.error}" style="color:red;">
-			出席番号またはパスワードが違います
-		</p>
-		<br>
 		<h2>この学習期間でまだ登録していない方は、新規登録をしてください</h2>
 		<form th:action="@{/student/new}" method="get">
-			<div class="button-area">
-				<button class="btn-login">新規設定</button>
-			</div>
+			<button class="btn-login">新規設定</button>
 		</form>
 	</div>
-
 </body>
-
 </html>

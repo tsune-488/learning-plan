@@ -8,7 +8,7 @@ public class StudentErrorController {
 
 	@GetMapping("/students/error")
 	public String showStudentError() {
-		return "studentError";
+		return "student/studentError";
 	}
 
 }

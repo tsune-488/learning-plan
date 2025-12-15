@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
 				"この出席番号は、すでに登録されています。");
 		
 		//登録画面に
-		return "studentSetting";
+		return "student/studentSetting";
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.example.demo.service.impl;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +17,6 @@ public class StudentServiceImpl implements StudentService {
 
 	//DI
 	private final StudentsMapper studentsMapper;
-	
-	@Override
-	public List<Students> selectByTeacherId(Integer teacherId) {
-		return studentsMapper.selectByTeacherId(teacherId);
-	}
 
 	@Override
 	public void insert(Students students) {
@@ -35,10 +28,22 @@ public class StudentServiceImpl implements StudentService {
 		studentsMapper.update(students);
 	}
 	
-	//@Override
-	//public Students login(String studentNumber, String studentPassword, Integer testId) {
-	//	return studentsMapper.findByNumberAndPassword(studentNumber, studentPassword, testId);
-	//}
+	@Override
+	public Students login(String studentNumber, String studentPassword, Integer testId) {
+		Students student =
+		        studentsMapper.findByStudentnumberAndTestId(studentNumber, testId);
+
+		if (student == null) {
+			return null;
+		}
+
+		// パスワード照合
+		if (!student.getStudentpassword().equals(studentPassword)) {
+			return null;
+		}
+
+		return student;
+	}
 	
 	@Override
 	public void registerStudent(Students student) {

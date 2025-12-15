@@ -46,18 +46,18 @@ public class StudentSettingController {
 		form.setIsNew(true);
 
 		model.addAttribute("studentsNewForm", form);
-		return "studentSetting";
+		return "student/studentSetting";
 	}
 
 	//新規登録を実行
 	@PostMapping("/student/new")
-	public String registerStudents(@ Valid @ModelAttribute StudentsNewForm form,
+	public String registerStudents(@Valid @ModelAttribute StudentsNewForm form,
 			                       BindingResult result,                       
 			                       HttpSession session) {
 
 		//入力エラー
 		if (result.hasErrors()) {
-	        return "studentSetting";
+			return "student/studentSetting";
 	    }
 		
 		//セッション

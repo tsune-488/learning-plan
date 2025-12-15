@@ -147,6 +147,6 @@ public class LearningRecordController {
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("viewList", viewList);
 
-		return "studentLearning";
+		return "student/learning";
 	}
 }
