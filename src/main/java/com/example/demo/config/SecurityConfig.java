@@ -30,8 +30,10 @@ public class SecurityConfig {
 								"/js/**",
 								"/images/**",
 								"/login",
-								"/student/login",
-								"/teacher/new" )
+								"/student/**",
+								"/students/**",
+								"/register/**"
+								)
 						.permitAll()
 						 .requestMatchers("/teacher/**").hasRole("TEACHER")
 						.anyRequest().authenticated())
