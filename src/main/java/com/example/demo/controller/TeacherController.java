@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +38,13 @@ public class TeacherController {
 	
 	//新規登録を実行
 	@PostMapping("/teacher/new")
-	public String registerTeachers(@ModelAttribute TeachersNewForm form ) {
+	public String registerTeachers(@Valid @ModelAttribute TeachersNewForm form,
+	                               BindingResult result,
+	                               Model model) {
+		//入力エラー
+		if (result.hasErrors()) {
+	        return "teacherSetting"; 
+	    }
 		//entityへの変換
 		Teachers teachers = TeachersHelper.convertTeachers(form);
 		//登録を実行

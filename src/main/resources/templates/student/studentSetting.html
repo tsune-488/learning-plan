@@ -14,16 +14,23 @@
 
 			<div><!--出席番号の設定-->
 				<label>出席番号</label>
-				<input type="text" th:field="*{studentnumber}">
+				<input type="text" th:field="*{studentnumber}" required>
+				<p th:if="${#fields.hasErrors('studentnumber')}"
+								   th:errors="*{studentnumber}"></p>
 			</div>
 			<div><!--生徒名の設定-->
 				<label>名前</label>
-				<input type="text" th:field="*{studentname}">
+				<input type="text" th:field="*{studentname}" required>
+				<p th:if="${#fields.hasErrors('studentname')}"
+								   th:errors="*{studentname}"></p>
 			</div>
 
 			<div><!--パスワードの設定-->
 				<label>パスワード</label>
-				<input type="password" th:field="*{studentpassword}">
+				<small>※4〜20文字で入力してください</small>
+				<input type="password" th:field="*{studentpassword}" required>
+				<p th:if="${#fields.hasErrors('studentpassword')}"
+								   th:errors="*{studentpassword}" style="color:red;"></p>
 			</div>
 			<p>※パスワードは忘れないものにしましょう。</p>
 

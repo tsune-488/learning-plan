@@ -1,7 +1,6 @@
 package com.example.demo.form;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +19,5 @@ public class StudentLoginForm {
     private String studentpassword;
     
     // テストID
-	@NotNull(message = "テスト情報が不正です。最初からやり直してください")
     private Integer testId;
 }

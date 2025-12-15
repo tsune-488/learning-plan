@@ -37,6 +37,7 @@ public class StudentLoginController {
 	    }
 	    
 	    StudentLoginForm form = new StudentLoginForm();
+	    form.setTestId(testId);
 		model.addAttribute("studentLoginForm", form);
 	    return "studentLogin";
 	}
@@ -48,13 +49,13 @@ public class StudentLoginController {
 			              Model model) {
 		
 		// 入力エラー
-	    if (result.hasErrors()) {
+		if (result.hasErrors()) {
 	        return "studentLogin";
 	    }
 		
 		//セッション
 		Integer testId = (Integer) session.getAttribute("testId");
-	    
+	 
 		if (testId == null) {
 	        return "redirect:/students/error";
 	    }

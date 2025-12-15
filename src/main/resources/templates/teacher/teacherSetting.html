@@ -15,23 +15,35 @@
 			<br>
 			<div><!--学校名の設定-->
 				<label>学校名</label>
-				<input type="text" th:field="*{schoolname}">
+				<input type="text" th:field="*{schoolname}" required>
+				<p th:if="${#fields.hasErrors('schoolname')}"
+				   th:errors="*{schoolname}"></p>
 			</div>
 			<div><!--メールアドレスの設定-->
 				<label>メールアドレス</label>
-				<input type="email" th:field="*{email}">
+				<input type="email" th:field="*{email}" required>
+				<p th:if="${#fields.hasErrors('email')}"
+				   th:errors="*{email}"></p>
 			</div>
 			<div><!--パスワードの設定-->
 				<label>パスワード</label>
-				<input type="password" th:field="*{password}">
+				<small>※4〜20文字で入力してください</small>
+				<input type="password" th:field="*{password}" required>
+				<p th:if="${#fields.hasErrors('password')}"
+				   th:errors="*{password}" style="color:red;"></p>
 			</div>
 			<div><!--学年・クラス-->
 				<label>学年クラス</label>
-				<input type="text" th:field="*{classname}">
+				<input type="text" th:field="*{classname}" required>
+				<p th:if="${#fields.hasErrors('classname')}"
+				   th:errors="*{classname}"></p>		
 			</div>
 			<div><!--先生の名前-->
 				<label>先生の名前</label>
-				<input type="text" th:field="*{teachername}">
+				<input type="text" th:field="*{teachername}" required>
+				<p th:if="${#fields.hasErrors('teachername')}"
+				   th:errors="*{teachername}"></p>
+									
 			</div>
 			<div class="btn-center">
 				<input type="submit" value="登録" class="bot-registration">

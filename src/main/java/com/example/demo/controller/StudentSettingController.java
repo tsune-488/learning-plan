@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +44,6 @@ public class StudentSettingController {
 		StudentsNewForm form = new StudentsNewForm();
 		//新規か編集の判定
 		form.setIsNew(true);
-		//テストID取得
-		form.setTestId(testId);
 
 		model.addAttribute("studentsNewForm", form);
 		return "studentSetting";
@@ -51,9 +51,15 @@ public class StudentSettingController {
 
 	//新規登録を実行
 	@PostMapping("/student/new")
-	public String registerStudents(@ModelAttribute StudentsNewForm form,
-			HttpSession session) {
+	public String registerStudents(@ Valid @ModelAttribute StudentsNewForm form,
+			                       BindingResult result,                       
+			                       HttpSession session) {
 
+		//入力エラー
+		if (result.hasErrors()) {
+	        return "studentSetting";
+	    }
+		
 		//セッション
 		Integer testId = (Integer) session.getAttribute("testId");
 
@@ -67,12 +73,12 @@ public class StudentSettingController {
 	        return "redirect:/students/error";
 	    }
 		
-	    //TestsSetting⇒teacherID を取得
-	    form.setTestId(testId);
-	    form.setTeacherId(testSetting.getTeacherId());
-
-		//entityへの変換
-		Students students = StudentsHelper.convertStudents(form);
+	    Integer teacherId = testSetting.getTeacherId();
+	    
+	    //Tentityへ変換
+	    Students students = StudentsHelper.convertStudents(form);
+	    students.setTestId(testId);
+	    students.setTeacherId(teacherId);
 		
 		//登録を実行
 		studentService.registerStudent(students);
