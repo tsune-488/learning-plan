@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: learningplan-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    restart: always
+
+  mysql:
+    image: mysql:8.0
+    container_name: learningplan-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: learningplan
+      MYSQL_USER: lpuser
+      MYSQL_PASSWORD: lppass
+      MYSQL_ROOT_PASSWORD: rootpass
+      TZ: Asia/Tokyo
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql-data:
