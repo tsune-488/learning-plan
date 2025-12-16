@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +14,7 @@ import com.example.demo.entity.Teachers;
 import com.example.demo.entity.TestsSetting;
 import com.example.demo.form.TestsSettingForm;
 import com.example.demo.helper.TestsSettingHelper;
+import com.example.demo.security.TeacherUserDetails;
 import com.example.demo.service.TestsService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,40 +27,34 @@ public class TestsSettingController {
 	private final TestsService testsService;
 
 	//テスト登録画面へ
-	@GetMapping("/test/new")
+	@GetMapping("/teacher/test/new")
 	public String showNewTestSettingForm(
-			HttpSession session,
+			@AuthenticationPrincipal TeacherUserDetails userDetails,
 			Model model) {
 
-		Teachers teacher = (Teachers) session.getAttribute("loginTeacher");
-
-		if (teacher == null) {
-			return "redirect:/login";
-		}
+		//教員のログイン情報を取得
+		 Teachers teacher = userDetails.getTeacher();
 
 		TestsSettingForm form = new TestsSettingForm();
-		form.setTeacherId(teacher.getId());
+	    form.setTeacherId(teacher.getId());
 
-		model.addAttribute("testsSettingForm", form);
-		return "testSetting";
+	    model.addAttribute("testsSettingForm", form);
+	    return "teacher/testSetting";
 	}
 
 	//テスト登録を実行
-	@PostMapping("/test/new")
+	@PostMapping("/teacher/test/new")
 	public String registerTests(@Valid @ModelAttribute TestsSettingForm form,
 			BindingResult result,
-			HttpSession session,
+			@AuthenticationPrincipal TeacherUserDetails userDetails,
 			Model model) {
 
-		Teachers teacher = (Teachers) session.getAttribute("loginTeacher");
-
-		if (teacher == null) {
-			return "redirect:/login";
-		}
+		//教員のログイン情報を取得
+		Teachers teacher = userDetails.getTeacher();
 
 		//入力チェックエラー
 		if (result.hasErrors()) {
-			return "testSetting";
+			return "teacher/testSetting";
 		}
 
 		form.setTeacherId(teacher.getId());
@@ -75,7 +70,7 @@ public class TestsSettingController {
 		String studentUrl = "/test/" + testId + "/student";
 		model.addAttribute("studentUrl", studentUrl);
 
-		return "studentUrlResult";
+		return "teacher/studentUrlResult";
 	}
 
 }

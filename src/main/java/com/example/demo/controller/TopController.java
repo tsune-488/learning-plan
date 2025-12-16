@@ -8,6 +8,6 @@ public class TopController {
 
     @GetMapping("/")
     public String top() {
-        return "top"; // ← 今貼ってくれたHTML
+        return "top";
     }
 }

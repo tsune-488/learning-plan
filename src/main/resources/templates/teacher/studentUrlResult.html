@@ -17,7 +17,7 @@
 		<p>このURLを生徒に配布してください。</p>
 		<div class="url-area">
 			<span id="loginUrl">
-				<a th:href="@{${studentUrl}}" th:text="${studentUrl}" class="url-box"></a>
+				<a th:href="${studentUrl}" th:text="${studentUrl}" class="url-box"></a>
 			</span>
 			<button type="button" onclick="copyUrl()" class="button-copy">コピー</button>
 			<br>
@@ -25,7 +25,7 @@
 		</div>
 		<br>
 		<!--管理画面に戻る-->
-		<form action="/dashboard" method="get">
+		<form action="/teacher/home" method="get">
 			<button type="submit" class="btn-back">管理画面へ戻る</button>
 
 		</form>
