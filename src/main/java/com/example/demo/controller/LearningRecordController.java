@@ -33,8 +33,7 @@ public class LearningRecordController {
 	@PostMapping("/student/save")
 	public String registerLeaningRecord(
 			HttpServletRequest request,
-			HttpSession session,
-			Model model) {
+			HttpSession session) {
 
 		// セッションから取得
 		Integer studentId = (Integer) session.getAttribute("studentId");
@@ -96,8 +95,7 @@ public class LearningRecordController {
 			}
 
 		}
-
-		model.addAttribute("msg", "保存しました");
+		
 		return "redirect:/students/learning";
 	}
 
@@ -108,6 +106,7 @@ public class LearningRecordController {
 		Integer studentId = (Integer) session.getAttribute("studentId");
 		Integer testId = (Integer) session.getAttribute("testId");
 
+				
 		if (studentId == null || testId == null) {
 			return "redirect:/students/error";
 		}
@@ -138,15 +137,22 @@ public class LearningRecordController {
 
 		//リスト化
 		List<LearningRecord> viewList = new ArrayList<>();
+		
+		
 		for (LocalDate d : dateList) {
-			viewList.add(recordMap.getOrDefault(d, null));
+			LearningRecord r = recordMap.get(d);
+			if (r == null) {
+				r = new LearningRecord();
+				r.setLearnDay(d);
+			}
+			viewList.add(r);
 		}
-
+		
 		model.addAttribute("studentId", studentId);
 		model.addAttribute("testId", testId);
 		model.addAttribute("dateList", dateList);
 		model.addAttribute("viewList", viewList);
 
-		return "student/learning";
+		return "student/studentLearning";
 	}
 }

@@ -14,7 +14,7 @@
 
 	<form th:action="@{/student/save}" method="post">
 
-		<table class="leaning-area">
+		<table class="learning-area">
 			<tr>
 				<th class="col-10">日付</th>
 				<th class="col-40">学習計画</th>
@@ -27,19 +27,19 @@
 
 				<!-- 計画 -->
 				<td>
-					<input type="text" th:name="'plan_' + ${stat.index}" th:value="${viewList[stat.index] != null
-				        ? viewList[stat.index].plan : ''}" class="learning-text">
+					<input type="text" th:name="'plan_' + ${stat.index}" th:value="${viewList[stat.index].plan}"
+						class="learning-text">
 				</td>
 
 				<!-- 実施内容 -->
 				<td>
-					<input type="text" th:name="'record_' + ${stat.index}" th:value="${viewList[stat.index] != null
-				        ? viewList[stat.index].record : ''}" class="learning-text">
+					<input type="text" th:name="'record_' + ${stat.index}" th:value="${viewList[stat.index].record}"
+						class="learning-text">
 				</td>
 			</tr>
 		</table>
 		<div class="btn-center">
-			<button type="submit" class="bot-keep">保存する</button>
+			<button type="submit" class="btn-keep">保存する</button>
 		</div>
 	</form>
 </body>

@@ -11,6 +11,9 @@
 <body class="student">
 	<div class="center-all">
 		<form th:action="@{/student/new}" th:object="${studentsNewForm}" method="post">
+			
+			<!--出席番号が重なった場合のエラー表示-->
+			<p th:if="${error}" th:text="${error}" style="color:red;"></p>
 
 			<div><!--出席番号の設定-->
 				<label>出席番号</label>
@@ -35,7 +38,7 @@
 			<p>※パスワードは忘れないものにしましょう。</p>
 
 			<div class="btn-center">
-				<input type="submit" value="登録" class="bot-registration">
+				<input type="submit" value="登録" class="btn-registration">
 			</div>
 		</form>
 	</div>

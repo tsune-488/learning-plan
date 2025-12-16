@@ -22,14 +22,14 @@
 				<label>出席番号</label>
 				<input type="text" th:field="*{studentnumber}">
 				<p th:if="${#fields.hasErrors('studentnumber')}"
-				   th:errors="*{studentnumber}"></p>
+				   th:errors="*{studentnumber}" style="color:red;"></p>
 			</div>
 
 			<div>
 				<label>パスワード</label>
 				<input type="password" th:field="*{studentpassword}">
 				<p th:if="${#fields.hasErrors('studentpassword')}"
-				   th:errors="*{studentpassword}"></p>
+				   th:errors="*{studentpassword}" style="color:red;"></p>
 			</div>
 
 			<div class="btn-center">

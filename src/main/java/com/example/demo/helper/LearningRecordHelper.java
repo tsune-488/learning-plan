@@ -6,7 +6,7 @@ import com.example.demo.form.LearningRecordForm;
 //新規登録のヘルパー
 public class LearningRecordHelper {
 	//LearningRecordへの変換
-	public static LearningRecord convertLearningRecordS(LearningRecordForm form) {
+	public static LearningRecord convertLearningRecords(LearningRecordForm form) {
 		
 		LearningRecord learningRecord = new LearningRecord();
 		learningRecord.setId(form.getId());

@@ -33,7 +33,7 @@ public class StudentLoginController {
 
         Integer testId = (Integer) session.getAttribute("testId");
         if (testId == null) {
-            return "redirect:/studenterror";
+            return "redirect:/students/error";
         }
 
         form.setTestId(testId);
@@ -67,5 +67,6 @@ public class StudentLoginController {
         session.setAttribute("testId", form.getTestId());
 
         return "redirect:/students/learning";
-    }
+    }  
+    
 }

@@ -309,12 +309,12 @@ table.student-list td:nth-child(1) {
 	width: 60%;
 }
 
-.bot-registration:hover {
+.btn-registration:hover {
 	background-color: rgb(0, 0, 64);
 	;
 }
 
-.bot-keep {
+.btn-keep {
 	display: inline-block;
 	padding: 12px  24px;
 	font-size: 16px;
@@ -324,13 +324,13 @@ table.student-list td:nth-child(1) {
 	border-radius: 6px;
 }
 
-.bot-keep:hover {
+.btn-keep:hover {
 	background-color: rgb(0, 0, 64);
 	;
 }
 
 
-.leaning-area {
+.learning-area {
 	background-color: rgba(255, 255, 255, 0.7);
 }
 

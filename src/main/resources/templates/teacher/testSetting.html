@@ -20,14 +20,20 @@
 		<div><!--試験の名前-->
 			<label>試験名</label>
 			<input type="text" th:field="*{testname}" class="testname">
+			<p th:if="${#fields.hasErrors('testname')}"
+			   th:errors="*{testname}" style="color:red;"></p>
 		</div>
 		<div><!--期間-->
 			<label>計画開始日：</label>
 			<input type="date" th:field="*{startday}">
+			<p th:if="${#fields.hasErrors('startday')}"
+			   th:errors="*{startday}" style="color:red;"></p>
 		</div>
 		<div>
 			<label>計画終了日：</label>
 			<input type="date" th:field="*{lastday}">
+			<p th:if="${#fields.hasErrors('lastday')}"
+			   th:errors="*{lastday}" style="color:red;"></p>
 		</div>
 		<br>
 		<div>

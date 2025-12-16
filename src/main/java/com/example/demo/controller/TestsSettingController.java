@@ -33,13 +33,13 @@ public class TestsSettingController {
 			Model model) {
 
 		//教員のログイン情報を取得
-		 Teachers teacher = userDetails.getTeacher();
+		Teachers teacher = userDetails.getTeacher();
 
 		TestsSettingForm form = new TestsSettingForm();
-	    form.setTeacherId(teacher.getId());
+		form.setTeacherId(teacher.getId());
 
-	    model.addAttribute("testsSettingForm", form);
-	    return "teacher/testSetting";
+		model.addAttribute("testsSettingForm", form);
+		return "teacher/testSetting";
 	}
 
 	//テスト登録を実行
@@ -51,6 +51,13 @@ public class TestsSettingController {
 
 		//教員のログイン情報を取得
 		Teachers teacher = userDetails.getTeacher();
+
+		//開始日＜終了日のチェック
+		if (form.getStartday() != null &&
+				form.getLastday() != null &&
+				form.getStartday().isAfter(form.getLastday())) {
+			result.rejectValue("lastday", null, "終了日は開始日以降にしてください");
+		}
 
 		//入力チェックエラー
 		if (result.hasErrors()) {
