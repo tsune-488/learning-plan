@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-d51amudactks73f5rqng-a:5432/learningplan
+    username: learningplan_user
+    password: dhhtZ61YA7Dj2B8DrvlHAnJLcunV7Taf
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+  sql:
+    init:
+      mode: never
+
+logging:
+  level:
+    org.springframework.jdbc: DEBUG
