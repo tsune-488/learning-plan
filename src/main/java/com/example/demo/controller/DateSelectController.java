@@ -32,6 +32,11 @@ public class DateSelectController {
 	public String showDateSelect(@RequestParam("testId") Integer testId,
 			@AuthenticationPrincipal TeacherUserDetails userDetails,
 			Model model) {
+		
+		// 認証チェック
+		if (userDetails == null) {
+		    return "redirect:/login";
+		}
 
 		//ログイン中の教員情報を取得
 		Teachers teacher = userDetails.getTeacher();
@@ -39,20 +44,19 @@ public class DateSelectController {
 		
 		//教員ID と　テストID
 		TestListDto test = testsService.getTestById(teacherId, testId);
-
 		if (test == null) {
             return "redirect:/teacher/tests";
         }
-		
-		
-		//生徒一覧
-		List<TeacherClassListDto> students = teacherClassListService.selectClassListByTestId(testId);
-
 		
 		//テスト期間の取得
 		LocalDate start = test.getStartday();
 		LocalDate end = test.getLastday();
 
+		if (start == null || end == null) {
+		    return "redirect:/teacher/tests";
+		}
+		
+		//日付リストの作成
 		List<LocalDate> dateList = new ArrayList<>();
 	
 
@@ -60,6 +64,9 @@ public class DateSelectController {
             dateList.add(d);
         }
 
+		
+		//生徒一覧
+		List<TeacherClassListDto> students = teacherClassListService.selectClassListByTestId(testId);
 
 		model.addAttribute("testId", testId);
 		model.addAttribute("students", students);

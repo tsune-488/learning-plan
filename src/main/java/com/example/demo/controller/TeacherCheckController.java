@@ -29,6 +29,12 @@ public class TeacherCheckController {
 		        @AuthenticationPrincipal TeacherUserDetails userDetails,
 		        Model model) {
 
+			
+			// 認証チェック
+		    if (userDetails == null) {
+		        return "redirect:/login";
+		    }
+			
 		    List<TeacherCheckDto> list =
 		            teacherCheckService.selectCheckListByDaily(
 		                    userDetails.getTeacher().getId(),
@@ -40,6 +46,6 @@ public class TeacherCheckController {
 		    model.addAttribute("testId", testId);
 		    model.addAttribute("date", date);
 
-		    return "teacher/dailycheck";
+		    return "teacher/dailyCheck";
 		}
 	}
