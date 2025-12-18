@@ -40,6 +40,8 @@ public class SecurityConfig {
 				.formLogin(form -> form
 					    .loginPage("/login") // 教員のログイン
 					    .loginProcessingUrl("/login") // 教員用
+					    .usernameParameter("email")   // ★ これを追加
+					    .passwordParameter("password")// ★ 明示（念のため）
 					    .successHandler(customLoginSuccessHandler)
 					    .failureUrl("/login?error")
 					)
