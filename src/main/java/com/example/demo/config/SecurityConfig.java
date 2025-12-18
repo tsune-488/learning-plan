@@ -16,45 +16,36 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
-	//DI
-	private final CustomLoginSuccessHandler customLoginSuccessHandler;
 
-	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http
-				.authorizeHttpRequests(auth -> auth
-						.requestMatchers(
-								"/",
-								"/css/**",
-								"/js/**",
-								"/images/**",
-								"/login",
-								"/student/**",
-								"/students/**",
-								"/register/**"
-								)
-						.permitAll()
-						 .requestMatchers("/teacher/**").hasRole("TEACHER")
-						.anyRequest().authenticated())
-				.formLogin(form -> form
-					    .loginPage("/login") // 教員のログイン
-					    .loginProcessingUrl("/login") // 教員用
-					    .usernameParameter("email")   // ★ これを追加
-					    .passwordParameter("password")// ★ 明示（念のため）
-					    .successHandler(customLoginSuccessHandler)
-					    .failureUrl("/login?error")
-					)
-				.logout(logout -> logout
-						.logoutSuccessUrl("/login?logout"))
-				.csrf(csrf -> csrf.disable());
+    private final CustomLoginSuccessHandler customLoginSuccessHandler;
 
-		return http.build();
-	}
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                    "/", "/css/**", "/js/**", "/images/**",
+                    "/login", "/register/**"
+                ).permitAll()
+                .requestMatchers("/teacher/**").hasRole("TEACHER")
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .successHandler(customLoginSuccessHandler)
+                .failureUrl("/login?error")
+            )
+            .logout(logout -> logout.logoutSuccessUrl("/login?logout"))
+            .csrf(csrf -> csrf.disable());
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+        return http.build();
+    }
 
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

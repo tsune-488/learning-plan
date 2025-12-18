@@ -34,11 +34,9 @@ public class TeachersServiceImpl implements TeachersService {
 
 	@Override
 	public void update(Teachers teachers) {
-		teachersMapper.update(teachers);
+	    if (teachers.getPassword() != null && !teachers.getPassword().isBlank()) {
+	        teachers.setPassword(passwordEncoder.encode(teachers.getPassword()));
+	    }
+	    teachersMapper.update(teachers);
 	}
-
-	//@Override
-	//public Teachers login(String email, String password) {
-	//	return teachersMapper.findByEmailAndPassword(email, password);
-	//}
 }

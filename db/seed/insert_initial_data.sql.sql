@@ -8,7 +8,7 @@ INSERT INTO teachers (
 VALUES (
   'エンジニア第８中学校',
   'teacher@example.com',
-  '$2a$10$4npqq4mPn8VKS2tnntPlwOoVmB7QQ0ZMkvYNaMekIDbQRZ6ExIzUS',
+  '$2a$10$XDQi4lXmYHpdNqa0SAY/EuDJ5OctcBaA2CLZnTL7fbCkHHuJwTIWa',
   '1年6組',
   '三木　真宇須'
 );

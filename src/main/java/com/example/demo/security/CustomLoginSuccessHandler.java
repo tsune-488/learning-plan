@@ -25,21 +25,14 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         Collection<? extends GrantedAuthority> authorities =
                 authentication.getAuthorities();
 
-        //教員の場合
+        // 教員の場合のみ
         if (authorities.stream()
                 .anyMatch(a -> a.getAuthority().equals("ROLE_TEACHER"))) {
             response.sendRedirect("/teacher/home");
             return;
         }
 
-        //生徒の場合
-        if (authorities.stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_STUDENT"))) {
-            response.sendRedirect("/student/home");
-            return;
-        }
-
-        //どちらでもない場合
+        // なにかあった場合
         response.sendRedirect("/login?error");
     }
 }
