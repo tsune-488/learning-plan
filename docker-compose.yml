@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: lp-mysql
+    environment:
+      MYSQL_DATABASE: learningplan
+      MYSQL_USER: lpuser
+      MYSQL_PASSWORD: lppass
+      MYSQL_ROOT_PASSWORD: rootpass
+      TZ: Asia/Tokyo
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  app:
+    build: .
+    container_name: lp-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/learningplan?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Tokyo
+      SPRING_DATASOURCE_USERNAME: lpuser
+      SPRING_DATASOURCE_PASSWORD: lppass
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql-data:
