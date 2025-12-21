@@ -27,7 +27,7 @@ public class StudentSettingController {
 	private final StudentService studentService;
 	private final TestsService testsService;
 
-	@GetMapping("/student/new")
+	@GetMapping("/students/new")
 	//新規登録画面へ
 	public String showNewStudentForm(
 			HttpSession session,
@@ -50,7 +50,7 @@ public class StudentSettingController {
 	}
 
 	//新規登録を実行
-	@PostMapping("/student/new")
+	@PostMapping("/students/new")
 	public String registerStudents(@Valid @ModelAttribute StudentsNewForm form,
 			                       BindingResult result,                       
 			                       HttpSession session) {
@@ -83,7 +83,7 @@ public class StudentSettingController {
 		//登録を実行
 		studentService.registerStudent(students);
 
-		return "redirect:/students/login";
+		return "redirect:/students/login?testId=" + testId;
 	}
 
 }

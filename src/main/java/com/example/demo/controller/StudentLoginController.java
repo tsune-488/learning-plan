@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Students;
 import com.example.demo.form.StudentLoginForm;
@@ -28,10 +29,17 @@ public class StudentLoginController {
     // ログイン画面表示
     @GetMapping("/login")
     public String showLogin(
+            @RequestParam(required = false) Integer testId,
             @ModelAttribute("studentLoginForm") StudentLoginForm form,
             HttpSession session) {
 
-        Integer testId = (Integer) session.getAttribute("testId");
+        if (testId != null) {
+            session.setAttribute("testId", testId);
+        } else {
+            // URLになければ session から取得
+            testId = (Integer) session.getAttribute("testId");
+        }
+
         if (testId == null) {
             return "redirect:/students/error";
         }
@@ -39,7 +47,6 @@ public class StudentLoginController {
         form.setTestId(testId);
         return "student/login";
     }
-
     // ログイン処理
     @PostMapping("/login")
     public String doLogin(

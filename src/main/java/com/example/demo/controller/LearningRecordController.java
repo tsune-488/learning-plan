@@ -30,7 +30,7 @@ public class LearningRecordController {
 	private final TestsService testsService;
 
 	//学習結果と実施内容の登録を実行
-	@PostMapping("/student/save")
+	@PostMapping("/students/save")
 	public String registerLeaningRecord(
 			HttpServletRequest request,
 			HttpSession session) {
@@ -96,7 +96,7 @@ public class LearningRecordController {
 
 		}
 		
-		return "redirect:/students/learning";
+		return "redirect:/students/learning?testId=" + testId;
 	}
 
 	@GetMapping("/students/learning")
