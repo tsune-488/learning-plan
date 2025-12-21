@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.demo.entity.Teachers;
 import com.example.demo.entity.TestsSetting;
@@ -74,7 +75,11 @@ public class TestsSettingController {
 		Integer testId = testsSetting.getId();
 
 		//生徒配布用のURLの生成
-		String studentUrl = "/test/" + testId + "/student";
+		String studentUrl = ServletUriComponentsBuilder
+				.fromCurrentContextPath()
+				.path("/test/{testId}/student")
+				.buildAndExpand(testId)
+				.toUriString();
 		model.addAttribute("studentUrl", studentUrl);
 
 		return "teacher/studentUrlResult";
